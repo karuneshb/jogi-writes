@@ -5,6 +5,10 @@ on:
   schedule:
     - cron: '0 0 * * *'  # Runs automatically every day at midnight UTC
 
+permissions:
+	contents: write
+
+
 jobs:
   sync:
     runs-on: ubuntu-latest
