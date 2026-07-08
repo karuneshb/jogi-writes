@@ -14,13 +14,12 @@ jobs:
 
       - name: Convert Notion Database to Markdown
         uses: ega4432/notion-to-markdown-action@v1
+        env:
+          NOTION_API_KEY: ${{ secrets.NOTION_TOKEN }}
+          NOTION_DATABASE_ID: ${{ secrets.NOTION_DATABASE_ID }}
         with:
-          notion_token: ${{ secrets.NOTION_TOKEN }}
-          notion_database_id: ${{ secrets.NOTION_DATABASE_ID }}
-          output_path: 'posts'  # Places your write-ups cleanly in a /posts folder
-          filename_property: 'Title'
-          filter_prop_name: 'Status'
-          filter_prop_value: 'Published'
+          output_path: 'posts'       # Places your write-ups cleanly in a /posts folder
+          filename_property: 'Title'  # Uses your column named "Title" for filenames
 
       - name: Commit and Push to Repository
         run: |
