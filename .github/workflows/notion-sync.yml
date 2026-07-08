@@ -1,13 +1,12 @@
 name: Sync Notion to GitHub
 
 on:
-  workflow_dispatch:  # Allows you to trigger the sync manually from the website
+  workflow_dispatch:
   schedule:
-    - cron: '0 0 * * *'  # Runs automatically every day at midnight UTC
+    - cron: '0 0 * * *'
 
 permissions:
-	contents: write
-
+  contents: write
 
 jobs:
   sync:
@@ -22,8 +21,8 @@ jobs:
           NOTION_API_KEY: ${{ secrets.NOTION_TOKEN }}
           NOTION_DATABASE_ID: ${{ secrets.NOTION_DATABASE_ID }}
         with:
-          output_path: 'posts'       # Places your write-ups cleanly in a /posts folder
-          filename_property: 'Title'  # Uses your column named "Title" for filenames
+          output_path: 'posts'
+          filename_property: 'Title'
 
       - name: Commit and Push to Repository
         run: |
