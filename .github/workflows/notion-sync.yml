@@ -13,7 +13,7 @@ jobs:
         uses: actions/checkout@v4
 
       - name: Convert Notion Database to Markdown
-        uses: wr760/notion-to-markdown-action@v1
+        uses: ega4432/notion-to-markdown-action@v1
         with:
           notion_token: ${{ secrets.NOTION_TOKEN }}
           notion_database_id: ${{ secrets.NOTION_DATABASE_ID }}
