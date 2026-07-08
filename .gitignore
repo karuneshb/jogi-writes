@@ -1,0 +1,13 @@
+# MacOS system files
+.DS_Store
+.AppleDouble
+.LSOverride
+
+# Sensitive/Temporary tool outputs
+*.log
+*.tmp
+secret*.txt
+.env
+
+# Backup files
+*.bak
