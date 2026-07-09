@@ -1,0 +1,341 @@
+<!DOCTYPE html>
+<html lang="en-us" dir="ltr">
+<head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=livereload" data-no-instant defer></script>
+  <!--
+Made with Book Theme
+https://github.com/alex-shpak/hugo-book
+-->
+
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="Sample template to start the writes. Check pipeline.
+Sample code to configure the yml for notion to github sync
+name: Sync Notion to GitHub on: workflow_dispatch: schedule: - cron: &#39;0 0 * * *&#39; permissions: contents: write jobs: sync: runs-on: ubuntu-latest steps: - name: Checkout repository uses: actions/checkout@v4 - name: Convert Notion Database to Markdown uses: ega4432/notion-to-markdown-action@v0 env: NOTION_API_KEY: ${{ secrets.NOTION_TOKEN }} NOTION_DATABASE_ID: ${{ secrets.NOTION_DATABASE_ID }} with: output_path: &#39;posts&#39; filename_property: &#39;Title&#39; - name: Commit and Push to Repository run: | git config --global user.name &#34;GitHub Actions Bot&#34; git config --global user.email &#34;actions@github.com&#34; git add . git diff-index --quiet HEAD || (git commit -m &#34;Automated sync from Notion&#34; &amp;&amp; git push)">
+<meta name="theme-color" media="(prefers-color-scheme: light)" content="#ffffff">
+<meta name="theme-color" media="(prefers-color-scheme: dark)" content="#2e3440">
+<meta name="color-scheme" content="light dark"><meta property="og:url" content="http://localhost:1313/posts/nmap-scan-techniques-walkthrough/">
+	<meta property="og:site_name" content="jogi-writes">
+	<meta property="og:title" content="Nmap Scan techniques walkthrough">
+	<meta property="og:description" content="Sample template to start the writes. Check pipeline.
+Sample code to configure the yml for notion to github sync
+name: Sync Notion to GitHub on: workflow_dispatch: schedule: - cron: &#39;0 0 * * *&#39; permissions: contents: write jobs: sync: runs-on: ubuntu-latest steps: - name: Checkout repository uses: actions/checkout@v4 - name: Convert Notion Database to Markdown uses: ega4432/notion-to-markdown-action@v0 env: NOTION_API_KEY: ${{ secrets.NOTION_TOKEN }} NOTION_DATABASE_ID: ${{ secrets.NOTION_DATABASE_ID }} with: output_path: &#39;posts&#39; filename_property: &#39;Title&#39; - name: Commit and Push to Repository run: | git config --global user.name &#34;GitHub Actions Bot&#34; git config --global user.email &#34;actions@github.com&#34; git add . git diff-index --quiet HEAD || (git commit -m &#34;Automated sync from Notion&#34; &amp;&amp; git push)">
+	<meta property="og:locale" content="en_us">
+	<meta property="og:type" content="article">
+		<meta property="article:section" content="posts">
+
+
+	<meta itemprop="name" content="Nmap Scan techniques walkthrough">
+	<meta itemprop="description" content="Sample template to start the writes. Check pipeline.
+Sample code to configure the yml for notion to github sync
+name: Sync Notion to GitHub on: workflow_dispatch: schedule: - cron: &#39;0 0 * * *&#39; permissions: contents: write jobs: sync: runs-on: ubuntu-latest steps: - name: Checkout repository uses: actions/checkout@v4 - name: Convert Notion Database to Markdown uses: ega4432/notion-to-markdown-action@v0 env: NOTION_API_KEY: ${{ secrets.NOTION_TOKEN }} NOTION_DATABASE_ID: ${{ secrets.NOTION_DATABASE_ID }} with: output_path: &#39;posts&#39; filename_property: &#39;Title&#39; - name: Commit and Push to Repository run: | git config --global user.name &#34;GitHub Actions Bot&#34; git config --global user.email &#34;actions@github.com&#34; git add . git diff-index --quiet HEAD || (git commit -m &#34;Automated sync from Notion&#34; &amp;&amp; git push)">
+	<meta itemprop="wordCount" content="110">
+
+<title>Nmap Scan techniques walkthrough • jogi-writes</title>
+<link rel="icon" href="/favicon.png" >
+<link rel="manifest" href="/manifest.json">
+<link rel="canonical" href="http://localhost:1313/posts/nmap-scan-techniques-walkthrough/">
+<link rel="stylesheet" href="/book.min.b71fe3c1d3675e52d80430d63a71819e12d05dee934e099a700bacfd4c49a7be.css" integrity="sha256-tx/jwdNnXlLYBDDWOnGBnhLQXe6TTgmacAus/UxJp74=" crossorigin="anonymous">
+
+
+  <script defer type="module" src="/en.search.min.13c19111c6b5275ead4de737ba8ecdb1f13e83a1244732198aee2ab3b7b5e3b2.js" integrity="sha256-E8GREca1J16tTec3uo7NsfE&#43;g6EkRzIZiu4qs7e147I=" crossorigin="anonymous"></script>
+
+  
+</head>
+<body dir="ltr" class="book-kind-page book-type-posts">
+  <input type="checkbox" class="hidden toggle" id="menu-control" />
+  <input type="checkbox" class="hidden toggle" id="toc-control" />
+  <main class="container flex">
+    
+<aside class="book-menu">
+  <div class="book-menu-content">
+    
+  <nav>
+<h2 class="book-brand">
+  <a class="flex align-center" href="/"><span>jogi-writes</span>
+  </a>
+</h2>
+
+
+<div class="book-search hidden">
+  <input id="book-search-input" type="text" 
+    placeholder="Search"
+    aria-label="Search"
+    maxlength="64" />
+  <div class="book-search-spinner hidden"></div>
+  <ul id="book-search-results"></ul>
+</div>
+<script>document.querySelector(".book-search").classList.remove("hidden")</script>
+
+
+
+
+
+
+
+
+
+
+  
+  <ul>
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/posts/automating-tasks-and-system-monitoring-with-linux-scripts/" class="">
+      Automating Tasks and System Monitoring with Linux Scripts</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/posts/bash-scripting/" class="">
+      BASH Scripting</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/posts/nmap-scan-techniques-walkthrough/" class="active">
+      Nmap Scan techniques walkthrough</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/posts/terraform-in-aws/" class="">
+      Terraform in AWS</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/posts/vulnerabilities/" class="">
+      Vulnerabilities</a>
+  
+
+        </li>
+      
+    
+  </ul>
+
+
+
+
+
+
+
+
+
+
+
+
+
+</nav>
+
+
+
+
+  <script>(function(){var e=document.querySelector("aside .book-menu-content");addEventListener("beforeunload",function(){localStorage.setItem("menu.scrollTop",e.scrollTop)}),e.scrollTop=localStorage.getItem("menu.scrollTop")})()</script>
+
+
+
+  </div>
+</aside>
+ 
+
+    <div class="book-page">
+      <header class="book-header hidden">
+        
+  <div class="flex align-center justify-between">
+  <label for="menu-control">
+    <img src="/icons/menu.svg" class="book-icon" alt="Menu" />
+  </label>
+
+  <h3>Nmap Scan techniques walkthrough</h3>
+
+  <label for="toc-control">
+    
+    <img src="/icons/toc.svg" class="book-icon" alt="Table of Contents" />
+    
+  </label>
+</div>
+
+
+  
+  <aside class="hidden">
+    
+  
+<nav id="TableOfContents"></nav>
+
+
+
+  </aside>
+  
+ 
+      </header>
+
+      
+      
+<article class="markdown book-post">
+  <h1>
+    Nmap Scan techniques walkthrough
+  </h1>
+  
+
+
+  
+
+  
+
+
+  <div class="book-post-content markdown-inner"><p>Sample template to start the writes. Check pipeline.</p>
+<p>Sample code to configure the yml for notion to github sync</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-javascript" data-lang="javascript"><span style="display:flex;"><span><span style="color:#a6e22e">name</span><span style="color:#f92672">:</span> <span style="color:#a6e22e">Sync</span> <span style="color:#a6e22e">Notion</span> <span style="color:#a6e22e">to</span> <span style="color:#a6e22e">GitHub</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#a6e22e">on</span><span style="color:#f92672">:</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">workflow_dispatch</span><span style="color:#f92672">:</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">schedule</span><span style="color:#f92672">:</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">-</span> <span style="color:#a6e22e">cron</span><span style="color:#f92672">:</span> <span style="color:#e6db74">&#39;0 0 * * *&#39;</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#a6e22e">permissions</span><span style="color:#f92672">:</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">contents</span><span style="color:#f92672">:</span> <span style="color:#a6e22e">write</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#a6e22e">jobs</span><span style="color:#f92672">:</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">sync</span><span style="color:#f92672">:</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">runs</span><span style="color:#f92672">-</span><span style="color:#a6e22e">on</span><span style="color:#f92672">:</span> <span style="color:#a6e22e">ubuntu</span><span style="color:#f92672">-</span><span style="color:#a6e22e">latest</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">steps</span><span style="color:#f92672">:</span>
+</span></span><span style="display:flex;"><span>      <span style="color:#f92672">-</span> <span style="color:#a6e22e">name</span><span style="color:#f92672">:</span> <span style="color:#a6e22e">Checkout</span> <span style="color:#a6e22e">repository</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#a6e22e">uses</span><span style="color:#f92672">:</span> <span style="color:#a6e22e">actions</span><span style="color:#f92672">/</span><span style="color:#a6e22e">checkout</span><span style="color:#960050;background-color:#1e0010">@</span><span style="color:#a6e22e">v4</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>      <span style="color:#f92672">-</span> <span style="color:#a6e22e">name</span><span style="color:#f92672">:</span> <span style="color:#a6e22e">Convert</span> <span style="color:#a6e22e">Notion</span> <span style="color:#a6e22e">Database</span> <span style="color:#a6e22e">to</span> <span style="color:#a6e22e">Markdown</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#a6e22e">uses</span><span style="color:#f92672">:</span> <span style="color:#a6e22e">ega4432</span><span style="color:#f92672">/</span><span style="color:#a6e22e">notion</span><span style="color:#f92672">-</span><span style="color:#a6e22e">to</span><span style="color:#f92672">-</span><span style="color:#a6e22e">markdown</span><span style="color:#f92672">-</span><span style="color:#a6e22e">action</span><span style="color:#960050;background-color:#1e0010">@</span><span style="color:#a6e22e">v0</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#a6e22e">env</span><span style="color:#f92672">:</span>
+</span></span><span style="display:flex;"><span>          <span style="color:#a6e22e">NOTION_API_KEY</span><span style="color:#f92672">:</span> <span style="color:#a6e22e">$</span>{{ <span style="color:#a6e22e">secrets</span>.<span style="color:#a6e22e">NOTION_TOKEN</span> }}
+</span></span><span style="display:flex;"><span>          <span style="color:#a6e22e">NOTION_DATABASE_ID</span><span style="color:#f92672">:</span> <span style="color:#a6e22e">$</span>{{ <span style="color:#a6e22e">secrets</span>.<span style="color:#a6e22e">NOTION_DATABASE_ID</span> }}
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">with</span><span style="color:#f92672">:</span>
+</span></span><span style="display:flex;"><span>          <span style="color:#a6e22e">output_path</span><span style="color:#f92672">:</span> <span style="color:#e6db74">&#39;posts&#39;</span>
+</span></span><span style="display:flex;"><span>          <span style="color:#a6e22e">filename_property</span><span style="color:#f92672">:</span> <span style="color:#e6db74">&#39;Title&#39;</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>      <span style="color:#f92672">-</span> <span style="color:#a6e22e">name</span><span style="color:#f92672">:</span> <span style="color:#a6e22e">Commit</span> <span style="color:#a6e22e">and</span> <span style="color:#a6e22e">Push</span> <span style="color:#a6e22e">to</span> <span style="color:#a6e22e">Repository</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#a6e22e">run</span><span style="color:#f92672">:</span> <span style="color:#f92672">|</span>
+</span></span><span style="display:flex;"><span>          <span style="color:#a6e22e">git</span> <span style="color:#a6e22e">config</span> <span style="color:#f92672">--</span><span style="color:#a6e22e">global</span> <span style="color:#a6e22e">user</span>.<span style="color:#a6e22e">name</span> <span style="color:#e6db74">&#34;GitHub Actions Bot&#34;</span>
+</span></span><span style="display:flex;"><span>          <span style="color:#a6e22e">git</span> <span style="color:#a6e22e">config</span> <span style="color:#f92672">--</span><span style="color:#a6e22e">global</span> <span style="color:#a6e22e">user</span>.<span style="color:#a6e22e">email</span> <span style="color:#e6db74">&#34;actions@github.com&#34;</span>
+</span></span><span style="display:flex;"><span>          <span style="color:#a6e22e">git</span> <span style="color:#a6e22e">add</span> .
+</span></span><span style="display:flex;"><span>          <span style="color:#a6e22e">git</span> <span style="color:#a6e22e">diff</span><span style="color:#f92672">-</span><span style="color:#a6e22e">index</span> <span style="color:#f92672">--</span><span style="color:#a6e22e">quiet</span> <span style="color:#a6e22e">HEAD</span> <span style="color:#f92672">||</span> (<span style="color:#a6e22e">git</span> <span style="color:#a6e22e">commit</span> <span style="color:#f92672">-</span><span style="color:#a6e22e">m</span> <span style="color:#e6db74">&#34;Automated sync from Notion&#34;</span> <span style="color:#f92672">&amp;&amp;</span> <span style="color:#a6e22e">git</span> <span style="color:#a6e22e">push</span>)</span></span></code></pre></div></div>
+</article>
+ 
+      
+
+      <footer class="book-footer">
+        
+  <div class="flex flex-wrap justify-between">
+  <div>
+  
+    <a href="/posts/bash-scripting/" class="flex align-center">
+      <img src="/icons/backward.svg" class="book-icon" alt="Backward" />
+      <span>BASH Scripting</span>
+    </a>
+  
+  </div>
+  <div>
+  
+    <a href="/posts/terraform-in-aws/" class="flex align-center">
+      <span>Terraform in AWS</span>
+      <img src="/icons/forward.svg" class="book-icon" alt="Forward" />
+    </a>
+  
+  </div>
+</div>
+ 
+        
+  
+  <div class="book-comments">
+
+</div>
+  
+ 
+        
+        
+  
+ 
+        
+  
+    <script>(function(){document.querySelectorAll("pre:has(code)").forEach(e=>{e.addEventListener("click",e.focus),e.addEventListener("copy",function(t){if(t.preventDefault(),navigator.clipboard){const t=window.getSelection().toString()||e.textContent;navigator.clipboard.writeText(t)}})})})()</script>
+  
+
+      </footer>
+
+      <label for="menu-control" class="hidden book-menu-overlay"></label>
+    </div>
+
+    
+  
+  <aside class="book-toc">
+    <div class="book-toc-content">
+      
+  
+<nav id="TableOfContents"></nav>
+
+
+
+    </div>
+  </aside>
+  
+ 
+  </main>
+
+  
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

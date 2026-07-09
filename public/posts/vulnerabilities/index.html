@@ -1,0 +1,507 @@
+<!DOCTYPE html>
+<html lang="en-us" dir="ltr">
+<head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=livereload" data-no-instant defer></script>
+  <!--
+Made with Book Theme
+https://github.com/alex-shpak/hugo-book
+-->
+
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="Injection Vulnerabilities:# SQL Injection (SQLi): SQL injection (SQLi) is a web security vulnerability that allows attackers to manipulate database queries, potentially accessing unauthorized data or modifying content.
+Blind SQL Injection: Blind SQL injection is a web security vulnerability where an attacker exploits an application vulnerable to SQL injection, but the application’s HTTP responses do not reveal the results of the SQL query or any database errors.
+Scenario: The web application accepts user input (e.g., search queries, form fields). The input is used in SQL queries without proper validation or sanitization. If the application is vulnerable, the attacker can manipulate the input to inject malicious SQL code. Distinguishing Feature: Unlike regular SQL injection, where data is directly retrieved from the database, blind SQL injection relies on asking the database a series of true or false questions. The attacker doesn’t see the actual data; they infer it indirectly. Techniques: Content-Based Blind SQLi: The attacker sends queries that return either ‘true’ or ‘false’. Example: Injecting 1=1 and 1=2 to compare responses. Time-Based Blind SQLi: The attacker delays the server’s response by injecting time-consuming operations. Example: Waiting for a delay if a condition is met (e.g., WAITFOR DELAY &#39;00:00:10&#39;). Impact: Successful blind SQL injection allows attackers to extract sensitive data, bypass authentication, or manipulate application behavior. Defense involves secure coding practices, automated testing, and vigilant security measures Cross-Site Scripting (XSS): Cross-site scripting (XSS) is a web security vulnerability that allows attackers to inject malicious scripts into web pages viewed by other users. These scripts can compromise the interactions users have with a vulnerable application.
+">
+<meta name="theme-color" media="(prefers-color-scheme: light)" content="#ffffff">
+<meta name="theme-color" media="(prefers-color-scheme: dark)" content="#2e3440">
+<meta name="color-scheme" content="light dark"><meta property="og:url" content="http://localhost:1313/posts/vulnerabilities/">
+	<meta property="og:site_name" content="jogi-writes">
+	<meta property="og:title" content="Vulnerabilities">
+	<meta property="og:description" content="Injection Vulnerabilities:# SQL Injection (SQLi): SQL injection (SQLi) is a web security vulnerability that allows attackers to manipulate database queries, potentially accessing unauthorized data or modifying content.
+Blind SQL Injection: Blind SQL injection is a web security vulnerability where an attacker exploits an application vulnerable to SQL injection, but the application’s HTTP responses do not reveal the results of the SQL query or any database errors.
+Scenario: The web application accepts user input (e.g., search queries, form fields). The input is used in SQL queries without proper validation or sanitization. If the application is vulnerable, the attacker can manipulate the input to inject malicious SQL code. Distinguishing Feature: Unlike regular SQL injection, where data is directly retrieved from the database, blind SQL injection relies on asking the database a series of true or false questions. The attacker doesn’t see the actual data; they infer it indirectly. Techniques: Content-Based Blind SQLi: The attacker sends queries that return either ‘true’ or ‘false’. Example: Injecting 1=1 and 1=2 to compare responses. Time-Based Blind SQLi: The attacker delays the server’s response by injecting time-consuming operations. Example: Waiting for a delay if a condition is met (e.g., WAITFOR DELAY &#39;00:00:10&#39;). Impact: Successful blind SQL injection allows attackers to extract sensitive data, bypass authentication, or manipulate application behavior. Defense involves secure coding practices, automated testing, and vigilant security measures Cross-Site Scripting (XSS): Cross-site scripting (XSS) is a web security vulnerability that allows attackers to inject malicious scripts into web pages viewed by other users. These scripts can compromise the interactions users have with a vulnerable application.">
+	<meta property="og:locale" content="en_us">
+	<meta property="og:type" content="article">
+		<meta property="article:section" content="posts">
+
+
+	<meta itemprop="name" content="Vulnerabilities">
+	<meta itemprop="description" content="Injection Vulnerabilities:# SQL Injection (SQLi): SQL injection (SQLi) is a web security vulnerability that allows attackers to manipulate database queries, potentially accessing unauthorized data or modifying content.
+Blind SQL Injection: Blind SQL injection is a web security vulnerability where an attacker exploits an application vulnerable to SQL injection, but the application’s HTTP responses do not reveal the results of the SQL query or any database errors.
+Scenario: The web application accepts user input (e.g., search queries, form fields). The input is used in SQL queries without proper validation or sanitization. If the application is vulnerable, the attacker can manipulate the input to inject malicious SQL code. Distinguishing Feature: Unlike regular SQL injection, where data is directly retrieved from the database, blind SQL injection relies on asking the database a series of true or false questions. The attacker doesn’t see the actual data; they infer it indirectly. Techniques: Content-Based Blind SQLi: The attacker sends queries that return either ‘true’ or ‘false’. Example: Injecting 1=1 and 1=2 to compare responses. Time-Based Blind SQLi: The attacker delays the server’s response by injecting time-consuming operations. Example: Waiting for a delay if a condition is met (e.g., WAITFOR DELAY &#39;00:00:10&#39;). Impact: Successful blind SQL injection allows attackers to extract sensitive data, bypass authentication, or manipulate application behavior. Defense involves secure coding practices, automated testing, and vigilant security measures Cross-Site Scripting (XSS): Cross-site scripting (XSS) is a web security vulnerability that allows attackers to inject malicious scripts into web pages viewed by other users. These scripts can compromise the interactions users have with a vulnerable application.">
+	<meta itemprop="wordCount" content="1058">
+
+<title>Vulnerabilities • jogi-writes</title>
+<link rel="icon" href="/favicon.png" >
+<link rel="manifest" href="/manifest.json">
+<link rel="canonical" href="http://localhost:1313/posts/vulnerabilities/">
+<link rel="stylesheet" href="/book.min.b71fe3c1d3675e52d80430d63a71819e12d05dee934e099a700bacfd4c49a7be.css" integrity="sha256-tx/jwdNnXlLYBDDWOnGBnhLQXe6TTgmacAus/UxJp74=" crossorigin="anonymous">
+
+
+  <script defer type="module" src="/en.search.min.13c19111c6b5275ead4de737ba8ecdb1f13e83a1244732198aee2ab3b7b5e3b2.js" integrity="sha256-E8GREca1J16tTec3uo7NsfE&#43;g6EkRzIZiu4qs7e147I=" crossorigin="anonymous"></script>
+
+  
+</head>
+<body dir="ltr" class="book-kind-page book-type-posts">
+  <input type="checkbox" class="hidden toggle" id="menu-control" />
+  <input type="checkbox" class="hidden toggle" id="toc-control" />
+  <main class="container flex">
+    
+<aside class="book-menu">
+  <div class="book-menu-content">
+    
+  <nav>
+<h2 class="book-brand">
+  <a class="flex align-center" href="/"><span>jogi-writes</span>
+  </a>
+</h2>
+
+
+<div class="book-search hidden">
+  <input id="book-search-input" type="text" 
+    placeholder="Search"
+    aria-label="Search"
+    maxlength="64" />
+  <div class="book-search-spinner hidden"></div>
+  <ul id="book-search-results"></ul>
+</div>
+<script>document.querySelector(".book-search").classList.remove("hidden")</script>
+
+
+
+
+
+
+
+
+
+
+  
+  <ul>
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/posts/automating-tasks-and-system-monitoring-with-linux-scripts/" class="">
+      Automating Tasks and System Monitoring with Linux Scripts</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/posts/bash-scripting/" class="">
+      BASH Scripting</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/posts/nmap-scan-techniques-walkthrough/" class="">
+      Nmap Scan techniques walkthrough</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/posts/terraform-in-aws/" class="">
+      Terraform in AWS</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/posts/vulnerabilities/" class="active">
+      Vulnerabilities</a>
+  
+
+        </li>
+      
+    
+  </ul>
+
+
+
+
+
+
+
+
+
+
+
+
+
+</nav>
+
+
+
+
+  <script>(function(){var e=document.querySelector("aside .book-menu-content");addEventListener("beforeunload",function(){localStorage.setItem("menu.scrollTop",e.scrollTop)}),e.scrollTop=localStorage.getItem("menu.scrollTop")})()</script>
+
+
+
+  </div>
+</aside>
+ 
+
+    <div class="book-page">
+      <header class="book-header hidden">
+        
+  <div class="flex align-center justify-between">
+  <label for="menu-control">
+    <img src="/icons/menu.svg" class="book-icon" alt="Menu" />
+  </label>
+
+  <h3>Vulnerabilities</h3>
+
+  <label for="toc-control">
+    
+    <img src="/icons/toc.svg" class="book-icon" alt="Table of Contents" />
+    
+  </label>
+</div>
+
+
+  
+  <aside class="hidden">
+    
+  
+<nav id="TableOfContents">
+  <ul>
+    <li><a href="#injection-vulnerabilities"><strong>Injection Vulnerabilities:</strong></a></li>
+    <li><a href="#broken-authentication-and-session-management">Broken Authentication and Session Management:</a></li>
+    <li><a href="#sensitive-data-exposure">Sensitive Data Exposure:</a></li>
+    <li><a href="#security-misconfiguration">Security Misconfiguration:</a></li>
+    <li><a href="#xml-related-vulnerabilities">XML-Related Vulnerabilities:</a></li>
+    <li><a href="#broken-access-control">Broken Access Control:</a></li>
+    <li><a href="#insecure-communication">Insecure Communication:</a></li>
+    <li><a href="#client-side-vulnerabilities">Client-Side Vulnerabilities:</a></li>
+  </ul>
+</nav>
+
+
+
+  </aside>
+  
+ 
+      </header>
+
+      
+      
+<article class="markdown book-post">
+  <h1>
+    Vulnerabilities
+  </h1>
+  
+
+
+  
+
+  
+
+
+  <div class="book-post-content markdown-inner"><h2 id="injection-vulnerabilities"><strong>Injection Vulnerabilities:</strong><a class="anchor" href="#injection-vulnerabilities">#</a></h2>
+<ol>
+<li>
+<p>SQL Injection (SQLi): <strong>SQL injection (SQLi)</strong> is a <strong>web security vulnerability</strong> that allows attackers to manipulate database queries, potentially accessing unauthorized data or modifying content.</p>
+</li>
+<li>
+<p>Blind SQL Injection: <a href="https://owasp.org/www-community/attacks/Blind_SQL_Injection"><strong>Blind SQL injection</strong></a><a href="https://owasp.org/www-community/attacks/Blind_SQL_Injection"> is a </a><a href="https://owasp.org/www-community/attacks/Blind_SQL_Injection"><strong>web security vulnerability</strong></a><a href="https://owasp.org/www-community/attacks/Blind_SQL_Injection"> where an attacker exploits an application vulnerable to SQL injection, but the application’s HTTP responses do not reveal the results of the SQL query or any database errors</a>.</p>
+<ol>
+<li><strong>Scenario</strong>:
+<ul>
+<li>The web application accepts user input (e.g., search queries, form fields).</li>
+<li>The input is used in SQL queries without proper validation or sanitization.</li>
+<li>If the application is vulnerable, the attacker can manipulate the input to inject malicious SQL code.</li>
+</ul>
+</li>
+<li><strong>Distinguishing Feature</strong>:
+<ul>
+<li>Unlike regular SQL injection, where data is directly retrieved from the database, <strong>blind SQL injection</strong> relies on asking the database a series of <strong>true or false questions</strong>.</li>
+<li>The attacker doesn’t see the actual data; they infer it indirectly.</li>
+</ul>
+</li>
+<li><strong>Techniques</strong>:
+<ul>
+<li><strong>Content-Based Blind SQLi</strong>:
+<ul>
+<li>The attacker sends queries that return either ‘true’ or ‘false’.</li>
+<li>Example: Injecting <strong><code>1=1</code></strong> and <strong><code>1=2</code></strong> to compare responses.</li>
+</ul>
+</li>
+<li><strong>Time-Based Blind SQLi</strong>:
+<ul>
+<li>The attacker delays the server’s response by injecting time-consuming operations.</li>
+<li>Example: Waiting for a delay if a condition is met (e.g., <strong><code>WAITFOR DELAY '00:00:10'</code></strong>).</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><strong>Impact</strong>:
+<ul>
+<li>Successful blind SQL injection allows attackers to extract sensitive data, bypass authentication, or manipulate application behavior.</li>
+<li><a href="https://owasp.org/www-community/attacks/Blind_SQL_Injection">Defense involves secure coding practices, automated testing, and vigilant security measures</a></li>
+</ul>
+</li>
+</ol>
+</li>
+<li>
+<p>Cross-Site Scripting (XSS): <strong>Cross-site scripting (XSS)</strong> is a <strong>web security vulnerability</strong> that allows attackers to inject <strong>malicious scripts</strong> into web pages viewed by other users. These scripts can compromise the interactions users have with a vulnerable application.</p>
+<ul>
+<li><strong>Reflected XSS</strong>: The malicious script comes from the current HTTP request.</li>
+<li><strong>Stored XSS</strong>: The malicious script originates from the website’s database.</li>
+<li><strong>DOM-based XSS</strong>: The vulnerability exists in client-side code rather than server-side code.</li>
+</ul>
+</li>
+<li>
+<p>Cross-Site Request Forgery (CSRF): <a href="https://en.wikipedia.org/wiki/Cross-site_request_forgery"><strong>Cross-site request forgery (CSRF)</strong></a><a href="https://en.wikipedia.org/wiki/Cross-site_request_forgery">, also known as </a><a href="https://en.wikipedia.org/wiki/Cross-site_request_forgery"><strong>one-click attack</strong></a><a href="https://en.wikipedia.org/wiki/Cross-site_request_forgery"> or </a><a href="https://en.wikipedia.org/wiki/Cross-site_request_forgery"><strong>session riding</strong></a><a href="https://en.wikipedia.org/wiki/Cross-site_request_forgery">, is a </a><a href="https://en.wikipedia.org/wiki/Cross-site_request_forgery"><strong>malicious exploit</strong></a><a href="https://en.wikipedia.org/wiki/Cross-site_request_forgery"> of a website or web application where unauthorized commands are submitted from a user that the web application trusts</a>.</p>
+<ol>
+<li>The attacker tricks a user into performing an action unintentionally.</li>
+<li>The action could be changing the user’s email address, password, or making a funds transfer.</li>
+<li>Depending on the action, the attacker might gain <strong>full control</strong> over the user’s account.</li>
+<li><a href="https://portswigger.net/web-security/csrf">If the compromised user has a </a><a href="https://portswigger.net/web-security/csrf"><strong>privileged role</strong></a><a href="https://portswigger.net/web-security/csrf">, the attacker could control all the application’s data and functionality</a>.</li>
+</ol>
+<p>To prevent CSRF attacks, developers should:</p>
+<ul>
+<li>Implement <strong>anti-CSRF tokens</strong> to validate requests.</li>
+<li>Use <strong>same-site cookies</strong> to restrict cross-origin requests.</li>
+<li>Ensure that actions requiring user consent (e.g., changing settings) are <strong>protected against CSRF</strong>.</li>
+</ul>
+</li>
+<li>
+<p>HTML Injection: HTML Injection involves injecting HTML code through vulnerable parts of a website. The attacker’s goal is to change the website’s appearance or manipulate displayed information. The injected data can include simple HTML tags or even entire fake forms or pages.</p>
+<ul>
+<li><strong>Appearance Change</strong>: Attackers alter how the website looks.</li>
+<li><strong>Identity Theft</strong>: Similar to XSS, attackers can steal user identities.</li>
+<li><strong>Stored HTML Injection</strong>: Malicious HTML code saved on the server executes whenever the user interacts with the affected functionality.</li>
+<li><strong>Reflected HTML Injection</strong>: Malicious HTML code is reflected back to the user in response to their input.</li>
+</ul>
+<p><strong>Prevention Strategies</strong>:</p>
+<pre><code>- **Sanitize Input**: Validate and sanitize user input to prevent malicious code injection.
+- **Escape Output**: Properly escape HTML content before rendering it in web pages.
+- **Use Security Libraries**: Leverage security libraries to handle input/output securely.
+</code></pre>
+</li>
+<li>
+<p>OS Command Injection: <strong>OS command injection</strong> is a <strong>web security vulnerability</strong> that allows attackers to execute arbitrary commands on the underlying operating system. This occurs when web applications call operating system commands with user-supplied input provided as arguments. <a href="https://portswigger.net/web-security/os-command-injection">The consequences of OS command injection can be severe, potentially leading to full compromise of the application and its data1</a><a href="https://www.fastly.com/learning/what-is-os-command-injection">2</a><a href="https://www.fastly.com/blog/back-to-basics-os-command-injection">3</a><a href="https://portswigger.net/burp/documentation/desktop/testing-workflow/input-validation/command-injection">4</a><a href="https://owasp.org/www-community/attacks/Command_Injection">5</a>. Developers should validate and sanitize user input to prevent such vulnerabilities</p>
+</li>
+</ol>
+<h2 id="broken-authentication-and-session-management">Broken Authentication and Session Management:<a class="anchor" href="#broken-authentication-and-session-management">#</a></h2>
+<ol>
+<li>
+<p>Session Fixation :
+• A Session fixation attack is an attack that occurs when a malicious user sets up a fake session before the legitimate users are able to log in. This leads to the entire system getting compromised and used to steal sensitive data.
+• A session fixation attack is a type of remote code execution attack which is used to exploit software designed with web-server session management features.</p>
+<pre><code>   **Common Causes of Session Fixation Vulnerabilities:**
+
+1. **Session Management Issues:**
+	- Poor session management practices, such as not generating a new session ID upon authentication or not properly invalidating session IDs after logout, can lead to session fixation vulnerabilities.
+2. **Insecure Session ID Handling:**
+- Lack of randomness or predictability in session ID generation can make it easier for an                         attacker to guess or brute force valid session IDs.
+
+Remediation for Session Fixation :
+
+
+   **a. Invalidate Old Session IDs: Invalidate any existing session IDs associated with the user upon successful authentication. This prevents attackers from reusing previously generated session IDs.**
+
+
+    b. **Implement Cross-Site Request Forgery (CSRF) Protection: Implement CSRF protection mechanisms to prevent attackers from forcing users to authenticate with a fixed session ID using malicious requests.**
+
+
+     c. **Use Strong Session ID Generation: Generate session IDs using a cryptographically secure random number generator to ensure unpredictability and randomness. Avoid using predictable patterns or algorithms that could be easily guessed by attackers.**
+
+
+[Session fixation | OWASP Foundation](https://owasp.org/www-community/attacks/Session_fixation)
+</code></pre>
+</li>
+<li>
+<p>Brute Force Attack : A brute force attack is a hacking method that uses trial and error to crack passwords, <a href="https://www.fortinet.com/resources/cyberglossary/login-credentials">login credentials</a>, and encryption keys. It is a simple yet reliable tactic for gaining unauthorized access to individual accounts and organizations’ systems and networks. The hacker tries multiple usernames and passwords, often using a computer to test a wide range of combinations, until they find the correct login information.</p>
+</li>
+<li>
+<p>Session Hijacking</p>
+</li>
+<li>
+<p>Password Cracking</p>
+</li>
+<li>
+<p>Weak Password Storage</p>
+</li>
+<li>
+<p>Insecure Authentication</p>
+</li>
+<li>
+<p>Cookie Theft</p>
+</li>
+<li>
+<p>Credential Reuse</p>
+</li>
+</ol>
+<h2 id="sensitive-data-exposure">Sensitive Data Exposure:<a class="anchor" href="#sensitive-data-exposure">#</a></h2>
+<ol>
+<li>Inadequate Encryption</li>
+<li>Insecure Direct Object References (IDOR)</li>
+<li>Missing Security Headers</li>
+</ol>
+<h2 id="security-misconfiguration">Security Misconfiguration:<a class="anchor" href="#security-misconfiguration">#</a></h2>
+<ol>
+<li>Default Passwords</li>
+<li>Directory Listing/ LFI /RFI</li>
+<li>Open Ports and Services</li>
+<li>CORS</li>
+<li>HTTP Security Headers Misconfiguration</li>
+</ol>
+<p>They might ask this like owasp 2017 vs 2021 what has changed?</p>
+<h2 id="xml-related-vulnerabilities">XML-Related Vulnerabilities:<a class="anchor" href="#xml-related-vulnerabilities">#</a></h2>
+<ol>
+<li>XML External Entity (XXE) Injection</li>
+</ol>
+<h2 id="broken-access-control">Broken Access Control:<a class="anchor" href="#broken-access-control">#</a></h2>
+<ol>
+<li>Privilege Escalation</li>
+<li>Insecure Direct Object References</li>
+<li>Deserialization</li>
+</ol>
+<h2 id="insecure-communication">Insecure Communication:<a class="anchor" href="#insecure-communication">#</a></h2>
+<ol>
+<li>Man-in-the-Middle (MITM) Attack</li>
+<li>Insufficient Transport Layer Security</li>
+<li>Insecure SSL/TLS Configuration</li>
+<li>Insecure Communication Protocols</li>
+</ol>
+<h2 id="client-side-vulnerabilities">Client-Side Vulnerabilities:<a class="anchor" href="#client-side-vulnerabilities">#</a></h2>
+<ol>
+<li>DOM-based XSS</li>
+<li>Insecure Cross-Origin Communication</li>
+<li>Browser Cache Poisoning</li>
+<li>Clickjacking</li>
+<li>Server-Side Request Forgery (SSRF)</li>
+<li>Blind SSRF 37.X-Content-Type-Options Bypass</li>
+<li>Content Security Policy (CSP) Bypass</li>
+<li>Race Conditions</li>
+<li>Price Manipulation</li>
+</ol>
+<p>How would you test an ecommerce website? Approach</p>
+</div>
+</article>
+ 
+      
+
+      <footer class="book-footer">
+        
+  <div class="flex flex-wrap justify-between">
+  <div>
+  
+    <a href="/posts/terraform-in-aws/" class="flex align-center">
+      <img src="/icons/backward.svg" class="book-icon" alt="Backward" />
+      <span>Terraform in AWS</span>
+    </a>
+  
+  </div>
+  <div>
+  
+  </div>
+</div>
+ 
+        
+  
+  <div class="book-comments">
+
+</div>
+  
+ 
+        
+        
+  
+ 
+        
+  
+    <script>(function(){document.querySelectorAll("pre:has(code)").forEach(e=>{e.addEventListener("click",e.focus),e.addEventListener("copy",function(t){if(t.preventDefault(),navigator.clipboard){const t=window.getSelection().toString()||e.textContent;navigator.clipboard.writeText(t)}})})})()</script>
+  
+
+      </footer>
+
+      <label for="menu-control" class="hidden book-menu-overlay"></label>
+    </div>
+
+    
+  
+  <aside class="book-toc">
+    <div class="book-toc-content">
+      
+  
+<nav id="TableOfContents">
+  <ul>
+    <li><a href="#injection-vulnerabilities"><strong>Injection Vulnerabilities:</strong></a></li>
+    <li><a href="#broken-authentication-and-session-management">Broken Authentication and Session Management:</a></li>
+    <li><a href="#sensitive-data-exposure">Sensitive Data Exposure:</a></li>
+    <li><a href="#security-misconfiguration">Security Misconfiguration:</a></li>
+    <li><a href="#xml-related-vulnerabilities">XML-Related Vulnerabilities:</a></li>
+    <li><a href="#broken-access-control">Broken Access Control:</a></li>
+    <li><a href="#insecure-communication">Insecure Communication:</a></li>
+    <li><a href="#client-side-vulnerabilities">Client-Side Vulnerabilities:</a></li>
+  </ul>
+</nav>
+
+
+
+    </div>
+  </aside>
+  
+ 
+  </main>
+
+  
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

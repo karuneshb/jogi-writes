@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
+  xmlns:xhtml="http://www.w3.org/1999/xhtml">
+  <url>
+    <loc>http://localhost:1313/posts/automating-tasks-and-system-monitoring-with-linux-scripts/</loc>
+  </url><url>
+    <loc>http://localhost:1313/posts/bash-scripting/</loc>
+  </url><url>
+    <loc>http://localhost:1313/</loc>
+  </url><url>
+    <loc>http://localhost:1313/posts/nmap-scan-techniques-walkthrough/</loc>
+  </url><url>
+    <loc>http://localhost:1313/posts/</loc>
+  </url><url>
+    <loc>http://localhost:1313/posts/terraform-in-aws/</loc>
+  </url><url>
+    <loc>http://localhost:1313/posts/vulnerabilities/</loc>
+  </url>
+</urlset>

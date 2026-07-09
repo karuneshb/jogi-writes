@@ -1,0 +1,26 @@
+baseURL = 'https://example.org/'
+defaultContentLanguage = 'en'
+title = 'jogi-writes'
+theme = 'hugo-book'
+
+# Fixes the deprecated languageCode warning
+[languages.en]
+  locale = 'en-us'
+
+# Fixes the deprecated taxonomy warning
+disableKinds = ["taxonomy"]
+
+[params]
+  # FIXES THE ERROR: Tells the theme your folder is named "posts" instead of "docs"
+  BookSection = 'posts'
+  
+  # UI Preferences
+  BookShowToC = true
+  BookEnableJS = true
+
+# Suppresses the raw HTML warnings from Notion exports
+ignoreLogs = ['warning-goldmark-raw-html']
+
+# Tells Hugo it's safe to render raw HTML/Markdown features from Notion
+[markup.goldmark.renderer]
+  unsafe = true
