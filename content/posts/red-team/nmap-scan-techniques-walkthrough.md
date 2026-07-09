@@ -1,0 +1,50 @@
+---
+Category:
+- Red-Team
+Credits: ''
+Reference: ''
+Status: Published
+createdAt: '2026-07-08T07:17:00.000Z'
+title: Nmap Scan techniques walkthrough
+updatedAt: '2026-07-09T16:24:00.000Z'
+---
+
+
+Sample template to start the writes. Check pipeline.
+
+Sample code to configure the yml for notion to github sync
+
+```javascript
+name: Sync Notion to GitHub
+
+on:
+  workflow_dispatch:
+  schedule:
+    - cron: '0 0 * * *'
+
+permissions:
+  contents: write
+
+jobs:
+  sync:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Convert Notion Database to Markdown
+        uses: ega4432/notion-to-markdown-action@v0
+        env:
+          NOTION_API_KEY: ${{ secrets.NOTION_TOKEN }}
+          NOTION_DATABASE_ID: ${{ secrets.NOTION_DATABASE_ID }}
+        with:
+          output_path: 'posts'
+          filename_property: 'Title'
+
+      - name: Commit and Push to Repository
+        run: |
+          git config --global user.name "GitHub Actions Bot"
+          git config --global user.email "actions@github.com"
+          git add .
+          git diff-index --quiet HEAD || (git commit -m "Automated sync from Notion" && git push)
+```
