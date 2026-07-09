@@ -1,11 +1,14 @@
 ---
-createdAt: "2026-07-08T07:17:00.000Z"
-updatedAt: "2026-07-08T16:20:00.000Z"
-Status: "Published"
-Reference: ""
-Credits: ""
-title: "Nmap Scan techniques walkthrough"
+Category:
+- Red-Team
+Credits: ''
+Reference: ''
+Status: Published
+createdAt: '2026-07-08T07:17:00.000Z'
+title: Nmap Scan techniques walkthrough
+updatedAt: '2026-07-09T16:24:00.000Z'
 ---
+
 
 Sample template to start the writes. Check pipeline.
 

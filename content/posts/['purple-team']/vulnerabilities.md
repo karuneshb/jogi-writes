@@ -1,11 +1,14 @@
 ---
-createdAt: "2026-07-08T16:30:00.000Z"
-updatedAt: "2026-07-08T18:30:00.000Z"
-Status: "In progress"
-Reference: ""
-Credits: ""
-title: "Vulnerabilities"
+Category:
+- Purple-Team
+Credits: ''
+Reference: ''
+Status: In progress
+createdAt: '2026-07-08T16:30:00.000Z'
+title: Vulnerabilities
+updatedAt: '2026-07-09T16:24:00.000Z'
 ---
+
 
 ## **Injection Vulnerabilities:**
 
