@@ -34,7 +34,7 @@ jobs:
         run: pip install pyyaml
 
       - name: Download Notion Images & Fix Paths
-        run: python sort_posts.py
+        run: python "$GITHUB_WORKSPACE/sort_posts.py"
 
       - name: Commit and Push to Repository
         run: |
