@@ -209,18 +209,28 @@ name: Sync Notion to GitHub on: workflow_dispatch: schedule: - cron: &#39;0 0 * 
       
       
 <article class="markdown book-post">
-  <h1>
-    Nmap Scan techniques walkthrough
-  </h1>
+  <h1>Nmap Scan techniques walkthrough</h1>
   
+  <div style="margin-top: -5px; margin-bottom: 25px; font-size: 0.9em; display: flex; flex-wrap: wrap; gap: 12px; align-items: center;">
+    
+    
+      
+      
+      
+      
+      <span style="background: #e8f5e9; color: #2e7d32; padding: 4px 10px; border-radius: 4px; font-weight: bold; font-size: 0.85em;">
+        📌 Published
+      </span>
+    
+    
+    
 
+    
+    
+  </div>
+  <hr style="border: 0; border-top: 1px solid #eee; margin-bottom: 20px;" />
 
-  
-
-  
-
-
-  <div class="book-post-content markdown-inner"><p>Sample template to start the writes. Check pipeline.</p>
+  <p>Sample template to start the writes. Check pipeline.</p>
 <p>Sample code to configure the yml for notion to github sync</p>
 <div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-javascript" data-lang="javascript"><span style="display:flex;"><span><span style="color:#a6e22e">name</span><span style="color:#f92672">:</span> <span style="color:#a6e22e">Sync</span> <span style="color:#a6e22e">Notion</span> <span style="color:#a6e22e">to</span> <span style="color:#a6e22e">GitHub</span>
 </span></span><span style="display:flex;"><span>
@@ -253,7 +263,7 @@ name: Sync Notion to GitHub on: workflow_dispatch: schedule: - cron: &#39;0 0 * 
 </span></span><span style="display:flex;"><span>          <span style="color:#a6e22e">git</span> <span style="color:#a6e22e">config</span> <span style="color:#f92672">--</span><span style="color:#a6e22e">global</span> <span style="color:#a6e22e">user</span>.<span style="color:#a6e22e">name</span> <span style="color:#e6db74">&#34;GitHub Actions Bot&#34;</span>
 </span></span><span style="display:flex;"><span>          <span style="color:#a6e22e">git</span> <span style="color:#a6e22e">config</span> <span style="color:#f92672">--</span><span style="color:#a6e22e">global</span> <span style="color:#a6e22e">user</span>.<span style="color:#a6e22e">email</span> <span style="color:#e6db74">&#34;actions@github.com&#34;</span>
 </span></span><span style="display:flex;"><span>          <span style="color:#a6e22e">git</span> <span style="color:#a6e22e">add</span> .
-</span></span><span style="display:flex;"><span>          <span style="color:#a6e22e">git</span> <span style="color:#a6e22e">diff</span><span style="color:#f92672">-</span><span style="color:#a6e22e">index</span> <span style="color:#f92672">--</span><span style="color:#a6e22e">quiet</span> <span style="color:#a6e22e">HEAD</span> <span style="color:#f92672">||</span> (<span style="color:#a6e22e">git</span> <span style="color:#a6e22e">commit</span> <span style="color:#f92672">-</span><span style="color:#a6e22e">m</span> <span style="color:#e6db74">&#34;Automated sync from Notion&#34;</span> <span style="color:#f92672">&amp;&amp;</span> <span style="color:#a6e22e">git</span> <span style="color:#a6e22e">push</span>)</span></span></code></pre></div></div>
+</span></span><span style="display:flex;"><span>          <span style="color:#a6e22e">git</span> <span style="color:#a6e22e">diff</span><span style="color:#f92672">-</span><span style="color:#a6e22e">index</span> <span style="color:#f92672">--</span><span style="color:#a6e22e">quiet</span> <span style="color:#a6e22e">HEAD</span> <span style="color:#f92672">||</span> (<span style="color:#a6e22e">git</span> <span style="color:#a6e22e">commit</span> <span style="color:#f92672">-</span><span style="color:#a6e22e">m</span> <span style="color:#e6db74">&#34;Automated sync from Notion&#34;</span> <span style="color:#f92672">&amp;&amp;</span> <span style="color:#a6e22e">git</span> <span style="color:#a6e22e">push</span>)</span></span></code></pre></div>
 </article>
  
       
@@ -261,23 +271,36 @@ name: Sync Notion to GitHub on: workflow_dispatch: schedule: - cron: &#39;0 0 * 
       <footer class="book-footer">
         
   <div class="flex flex-wrap justify-between">
-  <div>
-  
-    <a href="/posts/bash-scripting/" class="flex align-center">
-      <img src="/icons/backward.svg" class="book-icon" alt="Backward" />
-      <span>BASH Scripting</span>
-    </a>
-  
-  </div>
-  <div>
-  
-    <a href="/posts/terraform-in-aws/" class="flex align-center">
-      <span>Terraform in AWS</span>
-      <img src="/icons/forward.svg" class="book-icon" alt="Forward" />
-    </a>
-  
-  </div>
+
+<div>
+
 </div>
+
+<div>
+
+</div>
+
+</div>
+
+<div class="flex flex-wrap justify-between">
+    <span>
+    
+      <a href="/posts/bash-scripting/" class="flex align-center">
+        <img src="/icons/backward.svg" class="book-icon" alt="Backward" />
+        <span>BASH Scripting</span>
+      </a>
+    
+    </span>
+    <span>
+    
+      <a href="/posts/terraform-in-aws/" class="flex align-center">
+        <span>Terraform in AWS</span>
+        <img src="/icons/forward.svg" class="book-icon" alt="Forward" />
+      </a>
+    
+    </span>
+  </div>
+
  
         
   
