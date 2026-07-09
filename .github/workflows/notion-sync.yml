@@ -34,11 +34,72 @@ jobs:
         run: pip install pyyaml
 
       - name: Download Notion Images & Fix Paths
-        run: python "$GITHUB_WORKSPACE/sort_posts.py"
+        run: |
+          python - << 'EOF'
+          import os
+          import re
+          import urllib.request
+          import yaml
+
+          content_dir = 'content/posts'
+          static_img_dir = 'static/images'
+          os.makedirs(static_img_dir, exist_ok=True)
+
+          if os.path.exists(content_dir):
+              for filename in os.listdir(content_dir):
+                  if filename.endswith('.md') and filename != '_index.md':
+                      filepath = os.path.join(content_dir, filename)
+                      
+                      with open(filepath, 'r', encoding='utf-8') as f:
+                          text = f.read()
+
+                      parts = text.split('---', 2)
+                      if len(parts) >= 3:
+                          front_matter = yaml.safe_load(parts[1])
+                          
+                          raw_category = front_matter.get('Category', 'unassigned')
+                          if isinstance(raw_category, list):
+                              category_val = raw_category[0] if raw_category else 'unassigned'
+                          else:
+                              category_val = str(raw_category)
+                          
+                          category = category_val.strip("[]'").lower().replace(' ', '-')
+                          
+                          target_dir = os.path.join(content_dir, category)
+                          os.makedirs(target_dir, exist_ok=True)
+                          
+                          idx_path = os.path.join(target_dir, '_index.md')
+                          if not os.path.exists(idx_path):
+                              with open(idx_path, 'w') as idx_f:
+                                  folder_title = category.replace('-', ' ').title()
+                                  idx_f.write(f'---\ntitle: "{folder_title}"\nbookCollapseSection: false\n---\n')
+
+                          content = parts[2]
+                          matches = re.findall(r'!\[.*?\]\((http[s]?://.*?)\)', content)
+                          for url in matches:
+                              try:
+                                  clean_name = url.split('/')[-1].split('?')[0]
+                                  if not clean_name.endswith(('.png', '.jpg', '.jpeg', '.gif')):
+                                      clean_name = f'img_{len(os.listdir(static_img_dir))}.png'
+                                  local_path = os.path.join(static_img_dir, clean_name)
+                                  urllib.request.urlretrieve(url, local_path)
+                                  content = content.replace(url, f'/images/{clean_name}')
+                              except Exception as e:
+                                  print(f'Failed image download: {e}')
+
+                          new_fm = yaml.dump(front_matter)
+                          new_filepath = os.path.join(target_dir, filename)
+                          with open(new_filepath, 'w', encoding='utf-8') as f:
+                              f.write(f'---\n{new_fm}---\n{content}')
+                          
+                          if filepath != new_filepath:
+                              os.remove(filepath)
+          EOF
 
       - name: Commit and Push to Repository
         run: |
           git config --global user.name "GitHub Actions Bot"
           git config --global user.email "actions@github.com"
+          git rm --cached sort_posts.py || true
           git add .
           git diff-index --quiet HEAD || (git commit -m "Automated sync from Notion with nested categories" && git push)
