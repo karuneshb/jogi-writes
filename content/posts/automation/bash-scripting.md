@@ -139,4 +139,142 @@ Script to create a folder, a shell, and enter text in it.
 mkdir SHUBHAM
 cd SHUBHAM
 touch note.txt
-echo "FLAGGGSSSS
+echo "FLAGGGSSSS---successful" > note.txt
+```
+
+Above script modified to get inputs from the user.
+
+```bash
+!/usr/bin/zsh
+
+echo "Enter a folder name: "
+read -p folder
+sleep 0.5
+echo "Enter a file name: "
+read -p file
+sleep 0.5
+echo "Enter the secret message to put in the text file: "
+read -sp text
+sleep 0.5
+
+#-p enables to input on the same line
+#-s does not show the text while typing like sudo password
+echo "creating a folder with the name $folder, and a file $file in it with the secret text>
+
+mkdir $folder
+cd $folder
+touch $file.txt
+echo $text > $file.txt
+sleep 3
+echo "Operation is completed successfully!"
+echo "ending the script..."
+sleep 2
+```
+
+### Using Arrays in shell
+
+We can use arrays to extract a specific value from a given string. Just like python, the starting value is 0.
+
+```bash
+#!/usr/bin/zsh
+
+echo "Enter Names: "
+read -a names
+
+echo "Names : ${names[0]}, ${names[1]}"
+echo "The second name is: ${names[1]}"
+```
+
+### Using the $REPLY
+
+$REPLY reads and immediately extracts the current value in the buffer (built-in variable, reply).
+
+> 💡 Good for conserving space in the memory
+
+```bash
+#!/usr/bin/zsh
+
+echo "Enter Names: "
+read
+echo "Name is: $REPLY"
+```
+
+### Using args=()
+
+```bash
+#!/usr/bin/zsh
+
+echo $0 $1 $2 '> echo $1 $2 $3'
+# $0 reads the script name
+
+args=("$@") #takes input as array
+
+echo ${args[0]}, ${args[1]}
+```
+
+## Basic Math
+
+```bash
+~$ expr 30 -10
+```
+
+```bash
+#!/usr/bin/zsh
+
+mynum1 = 100
+mynum2 = 80
+
+echo $mynum1
+
+expr $mynum1 + 50
+expr $mynum1 + $mynum2
+
+#dont use echo before expr
+```
+
+```bash
+#!/usr/bin/zsh
+
+mynum=200
+
+if [ $mynum -eq 200 ]
+then
+	echo "The condition is true"
+else
+	echo "The variable does not equal 200."
+fi
+
+# -ne not equals
+# -gt greater than
+# -lt less than
+# -f checks for files
+
+
+```
+
+```bash
+#!/usr/bin/zsh
+
+command = /usr/bin/htop
+
+iif [ -f $command ]
+then
+	echo "$command is available, now executing it..."
+	sleep 3
+else
+	echo "$command is NOT available, installing it..."
+	sleep 1
+	sudo apt update && sudo apt install -y htop
+fi
+
+$command
+```
+
+## Exercise 2
+
+- [x] script name - “day.sh”
+- [x] greet w/ 3 messages
+  - [x] GM
+  - [x] howdy
+  - [x] best
+- [x] Executable
