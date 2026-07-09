@@ -2,6 +2,8 @@
 createdAt: "2026-07-08T07:17:00.000Z"
 updatedAt: "2026-07-08T16:20:00.000Z"
 Status: "Published"
+Credits and Reference: ""
+Dave Prowse: ""
 title: "Nmap Scan techniques walkthrough"
 ---
 
