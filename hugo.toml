@@ -24,3 +24,19 @@ ignoreLogs = ['warning-goldmark-raw-html']
 # Tells Hugo it's safe to render raw HTML/Markdown features from Notion
 [markup.goldmark.renderer]
   unsafe = true
+# Keep your existing config at the top, just add this below your params:
+
+[[menu.main]]
+  name = "💻 GitHub Profile"
+  url = "https://github.com/your-username"
+  weight = 10
+
+[[menu.main]]
+  name = "👔 LinkedIn"
+  url = "https://linkedin.com/in/your-profile"
+  weight = 20
+
+[[menu.main]]
+  name = "📄 Master's Portfolio"
+  url = "https://github.com/your-username/academic-projects"
+  weight = 30

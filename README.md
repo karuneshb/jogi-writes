@@ -6,4 +6,6 @@ Welcome to my central repository for security research, CTF write-ups, and tool 
 
 CAUTION: WORK IN PROGRESS FOR THEMED BLOG SPACE. 
 
-Please come back later!
+Somthing good is brewing...
+
+Check back soon...
