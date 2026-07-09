@@ -23,6 +23,8 @@ jobs:
         with:
           output_path: 'content/posts'
           filename_property: 'Title'
+          # ADD THIS LINE: Maps your Notion properties directly to Hugo front matter
+          front_matter_by_properties: 'Status,Category,Date'
 
       - name: Set up Python
         uses: actions/setup-python@v5
