@@ -23,7 +23,7 @@ jobs:
         with:
           output_path: 'posts'
           filename_property: 'Title'
-	  download_images: true          # Tells the action to download images from Notion
+          download_images: true          # Tells the action to download images from Notion
           images_path: 'static/images'   # Downloads them directly into Hugo's asset folder
 
       - name: Commit and Push to Repository
