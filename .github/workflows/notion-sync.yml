@@ -23,7 +23,6 @@ jobs:
         with:
           output_path: 'content/posts'
           filename_property: 'Title'
-          # ADD THIS LINE: Maps your Notion properties directly to Hugo front matter
           front_matter_by_properties: 'Status,Category,Date,Reference,Credits'
 
       - name: Set up Python
@@ -90,3 +89,11 @@ jobs:
                           # Remove the old misplaced top-level file if necessary
                           if filepath != new_filepath:
                               os.remove(filepath)
+          "
+
+      - name: Commit and Push to Repository
+        run: |
+          git config --global user.name "GitHub Actions Bot"
+          git config --global user.email "actions@github.com"
+          git add .
+          git diff-index --quiet HEAD || (git commit -m "Automated sync from Notion with nested categories" && git push)
