@@ -2,8 +2,8 @@
 createdAt: "2026-07-08T16:30:00.000Z"
 updatedAt: "2026-07-08T18:30:00.000Z"
 Status: "In progress"
-Credits and Reference: ""
-Dave Prowse: ""
+Reference: ""
+Credits: ""
 title: "Vulnerabilities"
 ---
 

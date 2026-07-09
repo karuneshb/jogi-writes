@@ -1,9 +1,9 @@
 ---
 createdAt: "2026-07-08T18:33:00.000Z"
-updatedAt: "2026-07-08T18:34:00.000Z"
+updatedAt: "2026-07-09T06:48:00.000Z"
 Status: "Done"
-Credits and Reference: ""
-Dave Prowse: ""
+Reference: ""
+Credits: ""
 title: "Automating Tasks and System Monitoring with Linux Scripts"
 ---
 
@@ -36,9 +36,9 @@ Rationale: Manually entering the commands is time taking. This script helps with
 
 Screenshots:
 
-![image.png](https://prod-files-secure.s3.us-west-2.amazonaws.com/394de64d-f353-4006-bc0a-9eeeddb852db/ece2c03e-2c2f-4779-950b-c6d8a160b5f5/image.png?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Content-Sha256=UNSIGNED-PAYLOAD&X-Amz-Credential=ASIAZI2LB4666G2QYXPK%2F20260709%2Fus-west-2%2Fs3%2Faws4_request&X-Amz-Date=20260709T040951Z&X-Amz-Expires=3600&X-Amz-Security-Token=IQoJb3JpZ2luX2VjEMz%2F%2F%2F%2F%2F%2F%2F%2F%2F%2FwEaCXVzLXdlc3QtMiJHMEUCIBPu7OOxtldpIo91FKgG8XpvFe%2FAF1V2D%2F7H4pgsY8r9AiEA1ug5o7vJ7bRXFdgnL4zElVtZJtC24dPmcYp4OLbtjp0qiAQIlf%2F%2F%2F%2F%2F%2F%2F%2F%2F%2FARAAGgw2Mzc0MjMxODM4MDUiDNxcUG8%2BcdXNtct0dircA15jMejKYhBj2kAOoXn5liortallZLSebXDrMiv0MIfXNLeEcT2UWPvV9yi0SG3F6easWT07maSN5Zy7y7YFsirJnXpJNPSNez%2Bnf6sWsti4ug3zv86DqrCG52jtj4MHo%2Bihwi%2BJjwtPWi62szFKYTc%2FkjL5eWc%2BFylJRH%2FphCZK%2FuOtW85HnUu7apH7gt9R4XfYz47yIU965LAcf2xa1zMmDxP10k51Qxks4aXy4D1W5Z1bZ9Kal6dFiIu34oPOXQhXoGdzinsDloKagBAHB0cf%2FkuDjMLmvqqSmvO7X0IaaeJjyoiPFZ4RzeY4rt9%2BvgO86aaa1pYYlA19p5Rysx4BAHo7y81vscpPU2NzCIrPAQkGGHgCQHIB%2FcKMb0fnymvwXyetPT9cBil47fkWU4HF5rtpd9%2FKDaajaXPIXAIGArXR%2FtIlBSt7xO4hpt4ZHfISI4t1LugqJWyzn%2BpCNO18tKjz7GnuESw8hevuzefeWN%2FZc%2FYx5kz7GtTpDzSN7EbDFMHoK5BaZEX%2F4uijOe17WXoRMkadEl7WRlNy6lWij2e4Rau5MpI1NGYgb0dooieeiCdmdtLFbePTOcNY8ubUrb%2F95kOTzqaA%2Fm0%2BSffBYK%2BvW6NANbZiXN4NMKC2vNIGOqUBhDIpJ8l0ErIk63FrjtTbW1YqF8khzdax6GCvwWGRTpaMMrwmMZ3q23L27Kbeh%2FZKWShytFyKgs6y%2FDoSu5VhmY%2Fa16iOHNUYnQ0HkPyeI1HcpKEfmRdDfMt%2FPcnBZDA4onjYBEciEWKBNd13eS4QJ%2BUQYzHAGSluRJWjE2A5k2R4FCXgZzIc0KB6xUca5ZoC%2FIGf3eJ7he68mVsjITqHOLMrH%2FOE&X-Amz-Signature=792b3f34dba9faf9351e10310005fe0349f58a202bd12c5408f449d23108902b&X-Amz-SignedHeaders=host&x-amz-checksum-mode=ENABLED&x-id=GetObject)
+![image.png](/images/image.png)
 
-![image.png](https://prod-files-secure.s3.us-west-2.amazonaws.com/394de64d-f353-4006-bc0a-9eeeddb852db/2709997c-3eac-45e3-8347-5fd5266a1a56/image.png?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Content-Sha256=UNSIGNED-PAYLOAD&X-Amz-Credential=ASIAZI2LB4666G2QYXPK%2F20260709%2Fus-west-2%2Fs3%2Faws4_request&X-Amz-Date=20260709T040951Z&X-Amz-Expires=3600&X-Amz-Security-Token=IQoJb3JpZ2luX2VjEMz%2F%2F%2F%2F%2F%2F%2F%2F%2F%2FwEaCXVzLXdlc3QtMiJHMEUCIBPu7OOxtldpIo91FKgG8XpvFe%2FAF1V2D%2F7H4pgsY8r9AiEA1ug5o7vJ7bRXFdgnL4zElVtZJtC24dPmcYp4OLbtjp0qiAQIlf%2F%2F%2F%2F%2F%2F%2F%2F%2F%2FARAAGgw2Mzc0MjMxODM4MDUiDNxcUG8%2BcdXNtct0dircA15jMejKYhBj2kAOoXn5liortallZLSebXDrMiv0MIfXNLeEcT2UWPvV9yi0SG3F6easWT07maSN5Zy7y7YFsirJnXpJNPSNez%2Bnf6sWsti4ug3zv86DqrCG52jtj4MHo%2Bihwi%2BJjwtPWi62szFKYTc%2FkjL5eWc%2BFylJRH%2FphCZK%2FuOtW85HnUu7apH7gt9R4XfYz47yIU965LAcf2xa1zMmDxP10k51Qxks4aXy4D1W5Z1bZ9Kal6dFiIu34oPOXQhXoGdzinsDloKagBAHB0cf%2FkuDjMLmvqqSmvO7X0IaaeJjyoiPFZ4RzeY4rt9%2BvgO86aaa1pYYlA19p5Rysx4BAHo7y81vscpPU2NzCIrPAQkGGHgCQHIB%2FcKMb0fnymvwXyetPT9cBil47fkWU4HF5rtpd9%2FKDaajaXPIXAIGArXR%2FtIlBSt7xO4hpt4ZHfISI4t1LugqJWyzn%2BpCNO18tKjz7GnuESw8hevuzefeWN%2FZc%2FYx5kz7GtTpDzSN7EbDFMHoK5BaZEX%2F4uijOe17WXoRMkadEl7WRlNy6lWij2e4Rau5MpI1NGYgb0dooieeiCdmdtLFbePTOcNY8ubUrb%2F95kOTzqaA%2Fm0%2BSffBYK%2BvW6NANbZiXN4NMKC2vNIGOqUBhDIpJ8l0ErIk63FrjtTbW1YqF8khzdax6GCvwWGRTpaMMrwmMZ3q23L27Kbeh%2FZKWShytFyKgs6y%2FDoSu5VhmY%2Fa16iOHNUYnQ0HkPyeI1HcpKEfmRdDfMt%2FPcnBZDA4onjYBEciEWKBNd13eS4QJ%2BUQYzHAGSluRJWjE2A5k2R4FCXgZzIc0KB6xUca5ZoC%2FIGf3eJ7he68mVsjITqHOLMrH%2FOE&X-Amz-Signature=f9cb63df9aee7c19ad9af1b28092cef1e3cc838c1e930d520ebb587c403478c3&X-Amz-SignedHeaders=host&x-amz-checksum-mode=ENABLED&x-id=GetObject)
+![image.png](/images/image.png)
 
 ---
 
@@ -76,7 +76,7 @@ Rationale: Easy monitoring and troubleshooting the system in case of any lags or
 
 Screenshot:
 
-![image.png](https://prod-files-secure.s3.us-west-2.amazonaws.com/394de64d-f353-4006-bc0a-9eeeddb852db/f512098e-7060-445c-9d77-5b23434bb1f0/image.png?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Content-Sha256=UNSIGNED-PAYLOAD&X-Amz-Credential=ASIAZI2LB4666G2QYXPK%2F20260709%2Fus-west-2%2Fs3%2Faws4_request&X-Amz-Date=20260709T040951Z&X-Amz-Expires=3600&X-Amz-Security-Token=IQoJb3JpZ2luX2VjEMz%2F%2F%2F%2F%2F%2F%2F%2F%2F%2FwEaCXVzLXdlc3QtMiJHMEUCIBPu7OOxtldpIo91FKgG8XpvFe%2FAF1V2D%2F7H4pgsY8r9AiEA1ug5o7vJ7bRXFdgnL4zElVtZJtC24dPmcYp4OLbtjp0qiAQIlf%2F%2F%2F%2F%2F%2F%2F%2F%2F%2FARAAGgw2Mzc0MjMxODM4MDUiDNxcUG8%2BcdXNtct0dircA15jMejKYhBj2kAOoXn5liortallZLSebXDrMiv0MIfXNLeEcT2UWPvV9yi0SG3F6easWT07maSN5Zy7y7YFsirJnXpJNPSNez%2Bnf6sWsti4ug3zv86DqrCG52jtj4MHo%2Bihwi%2BJjwtPWi62szFKYTc%2FkjL5eWc%2BFylJRH%2FphCZK%2FuOtW85HnUu7apH7gt9R4XfYz47yIU965LAcf2xa1zMmDxP10k51Qxks4aXy4D1W5Z1bZ9Kal6dFiIu34oPOXQhXoGdzinsDloKagBAHB0cf%2FkuDjMLmvqqSmvO7X0IaaeJjyoiPFZ4RzeY4rt9%2BvgO86aaa1pYYlA19p5Rysx4BAHo7y81vscpPU2NzCIrPAQkGGHgCQHIB%2FcKMb0fnymvwXyetPT9cBil47fkWU4HF5rtpd9%2FKDaajaXPIXAIGArXR%2FtIlBSt7xO4hpt4ZHfISI4t1LugqJWyzn%2BpCNO18tKjz7GnuESw8hevuzefeWN%2FZc%2FYx5kz7GtTpDzSN7EbDFMHoK5BaZEX%2F4uijOe17WXoRMkadEl7WRlNy6lWij2e4Rau5MpI1NGYgb0dooieeiCdmdtLFbePTOcNY8ubUrb%2F95kOTzqaA%2Fm0%2BSffBYK%2BvW6NANbZiXN4NMKC2vNIGOqUBhDIpJ8l0ErIk63FrjtTbW1YqF8khzdax6GCvwWGRTpaMMrwmMZ3q23L27Kbeh%2FZKWShytFyKgs6y%2FDoSu5VhmY%2Fa16iOHNUYnQ0HkPyeI1HcpKEfmRdDfMt%2FPcnBZDA4onjYBEciEWKBNd13eS4QJ%2BUQYzHAGSluRJWjE2A5k2R4FCXgZzIc0KB6xUca5ZoC%2FIGf3eJ7he68mVsjITqHOLMrH%2FOE&X-Amz-Signature=eeef8a88e383ba1e69534b066649ba73fd784a98f8bb4aa8b419d116a7d93229&X-Amz-SignedHeaders=host&x-amz-checksum-mode=ENABLED&x-id=GetObject)
+![image.png](/images/image.png)
 
 ---
 
@@ -117,7 +117,7 @@ Rationale: This script can be used to quickly install nginx in any ubuntu system
 
 Screenshot:
 
-![image.png](https://prod-files-secure.s3.us-west-2.amazonaws.com/394de64d-f353-4006-bc0a-9eeeddb852db/24891e17-216e-4ccb-8bf8-c1e427a1af8d/image.png?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Content-Sha256=UNSIGNED-PAYLOAD&X-Amz-Credential=ASIAZI2LB4666G2QYXPK%2F20260709%2Fus-west-2%2Fs3%2Faws4_request&X-Amz-Date=20260709T040951Z&X-Amz-Expires=3600&X-Amz-Security-Token=IQoJb3JpZ2luX2VjEMz%2F%2F%2F%2F%2F%2F%2F%2F%2F%2FwEaCXVzLXdlc3QtMiJHMEUCIBPu7OOxtldpIo91FKgG8XpvFe%2FAF1V2D%2F7H4pgsY8r9AiEA1ug5o7vJ7bRXFdgnL4zElVtZJtC24dPmcYp4OLbtjp0qiAQIlf%2F%2F%2F%2F%2F%2F%2F%2F%2F%2FARAAGgw2Mzc0MjMxODM4MDUiDNxcUG8%2BcdXNtct0dircA15jMejKYhBj2kAOoXn5liortallZLSebXDrMiv0MIfXNLeEcT2UWPvV9yi0SG3F6easWT07maSN5Zy7y7YFsirJnXpJNPSNez%2Bnf6sWsti4ug3zv86DqrCG52jtj4MHo%2Bihwi%2BJjwtPWi62szFKYTc%2FkjL5eWc%2BFylJRH%2FphCZK%2FuOtW85HnUu7apH7gt9R4XfYz47yIU965LAcf2xa1zMmDxP10k51Qxks4aXy4D1W5Z1bZ9Kal6dFiIu34oPOXQhXoGdzinsDloKagBAHB0cf%2FkuDjMLmvqqSmvO7X0IaaeJjyoiPFZ4RzeY4rt9%2BvgO86aaa1pYYlA19p5Rysx4BAHo7y81vscpPU2NzCIrPAQkGGHgCQHIB%2FcKMb0fnymvwXyetPT9cBil47fkWU4HF5rtpd9%2FKDaajaXPIXAIGArXR%2FtIlBSt7xO4hpt4ZHfISI4t1LugqJWyzn%2BpCNO18tKjz7GnuESw8hevuzefeWN%2FZc%2FYx5kz7GtTpDzSN7EbDFMHoK5BaZEX%2F4uijOe17WXoRMkadEl7WRlNy6lWij2e4Rau5MpI1NGYgb0dooieeiCdmdtLFbePTOcNY8ubUrb%2F95kOTzqaA%2Fm0%2BSffBYK%2BvW6NANbZiXN4NMKC2vNIGOqUBhDIpJ8l0ErIk63FrjtTbW1YqF8khzdax6GCvwWGRTpaMMrwmMZ3q23L27Kbeh%2FZKWShytFyKgs6y%2FDoSu5VhmY%2Fa16iOHNUYnQ0HkPyeI1HcpKEfmRdDfMt%2FPcnBZDA4onjYBEciEWKBNd13eS4QJ%2BUQYzHAGSluRJWjE2A5k2R4FCXgZzIc0KB6xUca5ZoC%2FIGf3eJ7he68mVsjITqHOLMrH%2FOE&X-Amz-Signature=147cba577f98577a7d01c30094a84e29cb7ee511b0ef6e0565279367ce87a608&X-Amz-SignedHeaders=host&x-amz-checksum-mode=ENABLED&x-id=GetObject)
+![image.png](/images/image.png)
 
 ---
 

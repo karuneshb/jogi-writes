@@ -2,8 +2,8 @@
 createdAt: "2026-07-08T16:25:00.000Z"
 updatedAt: "2026-07-08T18:25:00.000Z"
 Status: "Done"
-Credits and Reference: ""
-Dave Prowse: ""
+Reference: ""
+Credits: ""
 title: "BASH Scripting"
 ---
 

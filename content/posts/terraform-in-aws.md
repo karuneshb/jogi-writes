@@ -1,9 +1,9 @@
 ---
 createdAt: "2026-07-08T23:55:00.000Z"
-updatedAt: "2026-07-09T01:10:00.000Z"
+updatedAt: "2026-07-09T06:48:00.000Z"
 Status: "In progress"
-Credits and Reference: "Pearson course on LinkedIn: Essential Terraform in AWS by Dave Prowse"
-Dave Prowse: "https://github.com/daveprowse/tac-course"
+Reference: "https://github.com/daveprowse/tac-course"
+Credits: "Pearson course on LinkedIn: Essential Terraform in AWS by Dave Prowse"
 title: "Terraform in AWS"
 ---
 
