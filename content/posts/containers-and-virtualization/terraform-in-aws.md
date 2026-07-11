@@ -7,7 +7,7 @@ Reference: https://github.com/daveprowse/tac-course
 Status: In progress
 createdAt: '2026-07-08T23:55:00.000Z'
 title: Terraform in AWS
-updatedAt: '2026-07-09T16:24:00.000Z'
+updatedAt: '2026-07-10T16:21:00.000Z'
 ---
 
 
@@ -123,3 +123,5 @@ resource "aws_instance" "lesson_03" {
 | Apply                  | Build the infrastructure based on the TF config.                                                |
 | Use terraform commands | _init, fmt, validate, plan,_ _**apply**\_\_,_ _**destroy**_                                     |
 |                        | \***\*terraform apply** will make chnages to infra and to the state of the file; cannot go back |
+
+# First Terraform Configuration with AWS
