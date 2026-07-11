@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+	<channel>
+		<title>Containers And Virtualization on jogi-writes</title>
+		<link>http://localhost:1313/posts/containers-and-virtualization/</link>
+		<description>Recent content in Containers And Virtualization on jogi-writes</description>
+		<generator>Hugo</generator>
+		<language>en-us</language>
+		
+		
+		
+		
+			<atom:link href="http://localhost:1313/posts/containers-and-virtualization/index.xml" rel="self" type="application/rss+xml" />
+			<item>
+				<title>Terraform in AWS</title>
+				<link>http://localhost:1313/posts/containers-and-virtualization/terraform-in-aws/</link>
+				<pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+				<guid>http://localhost:1313/posts/containers-and-virtualization/terraform-in-aws/</guid>
+				<description>&lt;h1 id=&#34;whats-terraform&#34;&gt;What’s Terraform?&lt;a class=&#34;anchor&#34; href=&#34;#whats-terraform&#34;&gt;#&lt;/a&gt;&lt;/h1&gt;&#xA;&lt;ul&gt;&#xA;&lt;li&gt;HashiCorp’s IaC (infrastructure-as-code) tool&lt;/li&gt;&#xA;&lt;li&gt;The tool we may use would be Terraform CLI&lt;/li&gt;&#xA;&lt;li&gt;Can be used with many popular cloud service providers (CSP) like AWS, GCP, Azure, VMware!&lt;/li&gt;&#xA;&lt;li&gt;Declarative code&lt;/li&gt;&#xA;&lt;li&gt;Ideal for constantly changing servers and infra deployments and modifications&lt;/li&gt;&#xA;&lt;li&gt;Terraform documentation: &lt;a href=&#34;https://developer.hashicorp.com/terraform/docs&#34;&gt;https://developer.hashicorp.com/terraform/docs&lt;/a&gt;&lt;/li&gt;&#xA;&lt;/ul&gt;&#xA;&lt;h1 id=&#34;core-principles&#34;&gt;Core Principles&lt;a class=&#34;anchor&#34; href=&#34;#core-principles&#34;&gt;#&lt;/a&gt;&lt;/h1&gt;&#xA;&lt;table&gt;&#xA;&#x9;&lt;thead&gt;&#xA;&#x9;&#x9;&#x9;&lt;tr&gt;&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&lt;th&gt;Versioned Infrastructure&lt;/th&gt;&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&lt;th&gt;Multiple versions of code that should be under source code&lt;/th&gt;&#xA;&#x9;&#x9;&#x9;&lt;/tr&gt;&#xA;&#x9;&lt;/thead&gt;&#xA;&#x9;&lt;tbody&gt;&#xA;&#x9;&#x9;&#x9;&lt;tr&gt;&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&lt;td&gt;Idempotence&lt;/td&gt;&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&lt;td&gt;Consistency, 1x or 1000x&lt;/td&gt;&#xA;&#x9;&#x9;&#x9;&lt;/tr&gt;&#xA;&#x9;&#x9;&#x9;&lt;tr&gt;&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&lt;td&gt;Self-Describing Infrastructure&lt;/td&gt;&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&lt;td&gt;The infrastructure &lt;u&gt;&lt;strong&gt;is&lt;/strong&gt;&lt;/u&gt; the code. Easily readable.&lt;/td&gt;&#xA;&#x9;&#x9;&#x9;&lt;/tr&gt;&#xA;&#x9;&lt;/tbody&gt;&#xA;&lt;/table&gt;&#xA;&lt;p&gt;&lt;em&gt;Note: While its easy to create and destroy infrastructure, bear caution while doing so as it may lead to unwanted data loss, or higher costs&lt;/em&gt;&lt;/p&gt;</description>
+			</item>
+	</channel>
+</rss>

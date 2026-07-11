@@ -1,0 +1,564 @@
+<!DOCTYPE html>
+<html lang="en-us" dir="ltr">
+<head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=livereload" data-no-instant defer></script>
+  <!--
+Made with Book Theme
+https://github.com/alex-shpak/hugo-book
+-->
+
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="What’s Terraform?# HashiCorp’s IaC (infrastructure-as-code) tool The tool we may use would be Terraform CLI Can be used with many popular cloud service providers (CSP) like AWS, GCP, Azure, VMware! Declarative code Ideal for constantly changing servers and infra deployments and modifications Terraform documentation: https://developer.hashicorp.com/terraform/docs Core Principles# Versioned Infrastructure Multiple versions of code that should be under source code Idempotence Consistency, 1x or 1000x Self-Describing Infrastructure The infrastructure is the code. Easily readable. Note: While its easy to create and destroy infrastructure, bear caution while doing so as it may lead to unwanted data loss, or higher costs
+">
+<meta name="theme-color" media="(prefers-color-scheme: light)" content="#ffffff">
+<meta name="theme-color" media="(prefers-color-scheme: dark)" content="#2e3440">
+<meta name="color-scheme" content="light dark"><meta property="og:url" content="http://localhost:1313/posts/containers-and-virtualization/terraform-in-aws/">
+	<meta property="og:site_name" content="jogi-writes">
+	<meta property="og:title" content="Terraform in AWS">
+	<meta property="og:description" content="What’s Terraform?# HashiCorp’s IaC (infrastructure-as-code) tool The tool we may use would be Terraform CLI Can be used with many popular cloud service providers (CSP) like AWS, GCP, Azure, VMware! Declarative code Ideal for constantly changing servers and infra deployments and modifications Terraform documentation: https://developer.hashicorp.com/terraform/docs Core Principles# Versioned Infrastructure Multiple versions of code that should be under source code Idempotence Consistency, 1x or 1000x Self-Describing Infrastructure The infrastructure is the code. Easily readable. Note: While its easy to create and destroy infrastructure, bear caution while doing so as it may lead to unwanted data loss, or higher costs">
+	<meta property="og:locale" content="en_us">
+	<meta property="og:type" content="article">
+		<meta property="article:section" content="posts">
+
+
+	<meta itemprop="name" content="Terraform in AWS">
+	<meta itemprop="description" content="What’s Terraform?# HashiCorp’s IaC (infrastructure-as-code) tool The tool we may use would be Terraform CLI Can be used with many popular cloud service providers (CSP) like AWS, GCP, Azure, VMware! Declarative code Ideal for constantly changing servers and infra deployments and modifications Terraform documentation: https://developer.hashicorp.com/terraform/docs Core Principles# Versioned Infrastructure Multiple versions of code that should be under source code Idempotence Consistency, 1x or 1000x Self-Describing Infrastructure The infrastructure is the code. Easily readable. Note: While its easy to create and destroy infrastructure, bear caution while doing so as it may lead to unwanted data loss, or higher costs">
+	<meta itemprop="wordCount" content="396">
+
+<title>Terraform in AWS • jogi-writes</title>
+<link rel="icon" href="/favicon.png" >
+<link rel="manifest" href="/manifest.json">
+<link rel="canonical" href="http://localhost:1313/posts/containers-and-virtualization/terraform-in-aws/">
+<link rel="stylesheet" href="/book.min.b71fe3c1d3675e52d80430d63a71819e12d05dee934e099a700bacfd4c49a7be.css" integrity="sha256-tx/jwdNnXlLYBDDWOnGBnhLQXe6TTgmacAus/UxJp74=" crossorigin="anonymous">
+
+
+  <script defer type="module" src="/en.search.min.115fbd8172062702fd4cb7ee3eb1412ee99bd70a7df7252ff768cabe5ad2cff4.js" integrity="sha256-EV&#43;9gXIGJwL9TLfuPrFBLumb1wp99yUv92jKvlrSz/Q=" crossorigin="anonymous"></script>
+
+  
+</head>
+<body dir="ltr" class="book-kind-page book-type-posts">
+  <input type="checkbox" class="hidden toggle" id="menu-control" />
+  <input type="checkbox" class="hidden toggle" id="toc-control" />
+  <main class="container flex">
+    
+<aside class="book-menu">
+  <div class="book-menu-content">
+    
+  <nav>
+<h2 class="book-brand">
+  <a class="flex align-center" href="/"><span>jogi-writes</span>
+  </a>
+</h2>
+
+
+<div class="book-search hidden">
+  <input id="book-search-input" type="text" 
+    placeholder="Search"
+    aria-label="Search"
+    maxlength="64" />
+  <div class="book-search-spinner hidden"></div>
+  <ul id="book-search-results"></ul>
+</div>
+<script>document.querySelector(".book-search").classList.remove("hidden")</script>
+
+
+
+
+
+
+
+
+
+
+  
+  <ul>
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a>
+      Automation</a>
+  
+
+          
+  <ul>
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/posts/automation/automating-tasks-and-system-monitoring-with-linux-scripts/" class="">
+      Automating Tasks and System Monitoring with Linux Scripts</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/posts/automation/bash-scripting/" class="">
+      BASH Scripting</a>
+  
+
+        </li>
+      
+    
+  </ul>
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a>
+      Containers And Virtualization</a>
+  
+
+          
+  <ul>
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/posts/containers-and-virtualization/terraform-in-aws/" class="active">
+      Terraform in AWS</a>
+  
+
+        </li>
+      
+    
+  </ul>
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a>
+      Purple Team</a>
+  
+
+          
+  <ul>
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/posts/purple-team/vulnerabilities/" class="">
+      Vulnerabilities</a>
+  
+
+        </li>
+      
+    
+  </ul>
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a>
+      Red Team</a>
+  
+
+          
+  <ul>
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/posts/red-team/nmap-scan-techniques-walkthrough/" class="">
+      Nmap Scan techniques walkthrough</a>
+  
+
+        </li>
+      
+    
+  </ul>
+
+        </li>
+      
+    
+  </ul>
+
+
+
+
+
+
+
+
+
+
+
+
+
+</nav>
+
+
+
+
+  <script>(function(){var e=document.querySelector("aside .book-menu-content");addEventListener("beforeunload",function(){localStorage.setItem("menu.scrollTop",e.scrollTop)}),e.scrollTop=localStorage.getItem("menu.scrollTop")})()</script>
+
+
+
+  </div>
+</aside>
+ 
+
+    <div class="book-page">
+      <header class="book-header hidden">
+        
+  <div class="flex align-center justify-between">
+  <label for="menu-control">
+    <img src="/icons/menu.svg" class="book-icon" alt="Menu" />
+  </label>
+
+  <h3>Terraform in AWS</h3>
+
+  <label for="toc-control">
+    
+    <img src="/icons/toc.svg" class="book-icon" alt="Table of Contents" />
+    
+  </label>
+</div>
+
+
+  
+  <aside class="hidden">
+    
+  
+<nav id="TableOfContents">
+  <ul>
+    <li><a href="#why-terraform">Why Terraform?</a></li>
+  </ul>
+
+  <ul>
+    <li>
+      <ul>
+        <li><a href="#installing-terraform">Installing Terraform</a></li>
+      </ul>
+    </li>
+    <li><a href="#how-does-terraform-work">How does Terraform work</a></li>
+    <li><a href="#terraform-workflow">Terraform Workflow</a></li>
+  </ul>
+</nav>
+
+
+
+  </aside>
+  
+ 
+      </header>
+
+      
+      
+<article class="markdown book-post">
+  <h1>Terraform in AWS</h1>
+  
+  <div style="margin-top: -5px; margin-bottom: 25px; font-size: 0.9em; display: flex; flex-wrap: wrap; gap: 12px; align-items: center;">
+    
+    
+      
+      
+      
+      
+      <span style="background: #e1f5fe; color: #0288d1; padding: 4px 10px; border-radius: 4px; font-weight: bold; font-size: 0.85em;">
+        📌 In progress
+      </span>
+    
+    
+    
+      <span style="color: #555; font-style: italic; display: inline-flex; align-items: center;">
+        🙏 Credits: Pearson course on LinkedIn: Essential Terraform in AWS by Dave Prowse
+      </span>
+    
+
+    
+      <a href="https://github.com/daveprowse/tac-course" target="_blank" style="background: #f3e5f5; color: #7b1fa2; text-decoration: none; padding: 4px 10px; border-radius: 4px; font-weight: 500; font-size: 0.85em; display: inline-flex; align-items: center;">
+        🔗 Course Repo
+      </a>
+    
+    
+  </div>
+  <hr style="border: 0; border-top: 1px solid #eee; margin-bottom: 20px;" />
+
+  <h1 id="whats-terraform">What’s Terraform?<a class="anchor" href="#whats-terraform">#</a></h1>
+<ul>
+<li>HashiCorp’s IaC (infrastructure-as-code) tool</li>
+<li>The tool we may use would be Terraform CLI</li>
+<li>Can be used with many popular cloud service providers (CSP) like AWS, GCP, Azure, VMware!</li>
+<li>Declarative code</li>
+<li>Ideal for constantly changing servers and infra deployments and modifications</li>
+<li>Terraform documentation: <a href="https://developer.hashicorp.com/terraform/docs">https://developer.hashicorp.com/terraform/docs</a></li>
+</ul>
+<h1 id="core-principles">Core Principles<a class="anchor" href="#core-principles">#</a></h1>
+<table>
+	<thead>
+			<tr>
+					<th>Versioned Infrastructure</th>
+					<th>Multiple versions of code that should be under source code</th>
+			</tr>
+	</thead>
+	<tbody>
+			<tr>
+					<td>Idempotence</td>
+					<td>Consistency, 1x or 1000x</td>
+			</tr>
+			<tr>
+					<td>Self-Describing Infrastructure</td>
+					<td>The infrastructure <u><strong>is</strong></u> the code. Easily readable.</td>
+			</tr>
+	</tbody>
+</table>
+<p><em>Note: While its easy to create and destroy infrastructure, bear caution while doing so as it may lead to unwanted data loss, or higher costs</em></p>
+<ul>
+<li>Templates are available online to use</li>
+</ul>
+<h2 id="why-terraform">Why Terraform?<a class="anchor" href="#why-terraform">#</a></h2>
+<ul>
+<li>Robust with multiple CSPs</li>
+<li>Quick and Efficient</li>
+<li>Easy to read</li>
+<li>Use of state; allows to track changes between deployments</li>
+<li>Compatible with version control</li>
+<li>But, does not support user-defined functions</li>
+</ul>
+<h1 id="getting-started">Getting Started<a class="anchor" href="#getting-started">#</a></h1>
+<h3 id="installing-terraform">Installing Terraform<a class="anchor" href="#installing-terraform">#</a></h3>
+<p>Using powershell</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-powershell" data-lang="powershell"><span style="display:flex;"><span><span style="color:#75715e">#To install TF directly through the command line on PowerShell</span>
+</span></span><span style="display:flex;"><span>winget install HashiCorp.Terraform
+</span></span><span style="display:flex;"><span><span style="color:#75715e">#Confirm installation as prompted</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e">#To get started, while using autocomplete, powershell may show</span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># &#34;terraform.exe&#34; which is also fine</span>
+</span></span><span style="display:flex;"><span>terraform -h
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e">#initialize TF to initialize the directory, must be used before starting with anything, TF</span>
+</span></span><span style="display:flex;"><span>terraform init</span></span></code></pre></div><p>Using package manager</p>
+<p>Using direct download</p>
+<p>Using terminal on Mac</p>
+<h2 id="how-does-terraform-work">How does Terraform work<a class="anchor" href="#how-does-terraform-work">#</a></h2>
+<ol>
+<li>Write the code</li>
+<li>Initialize the directory</li>
+<li>Apply your infrastructure</li>
+</ol>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-powershell" data-lang="powershell"><span style="display:flex;"><span>terraform init
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>terraform apply</span></span></code></pre></div><ul>
+<li>Terraform codeblock architecture</li>
+</ul>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-powershell" data-lang="powershell"><span style="display:flex;"><span><span style="color:#75715e">#This is the terraform block</span>
+</span></span><span style="display:flex;"><span>terraform {
+</span></span><span style="display:flex;"><span>  required_providers {
+</span></span><span style="display:flex;"><span>    aws = {
+</span></span><span style="display:flex;"><span>      source  = <span style="color:#e6db74">&#34;hashicorp/aws&#34;</span>
+</span></span><span style="display:flex;"><span>      version = <span style="color:#e6db74">&#34;~&gt; 4.16&#34;</span> <span style="color:#75715e"># the ~ operator ensures only the latest ofmajor version 4</span>
+</span></span><span style="display:flex;"><span>										      <span style="color:#75715e"># will be installed</span>
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>  }
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>						<span style="color:#75715e">#can have more providers too</span>
+</span></span><span style="display:flex;"><span>  required_version = <span style="color:#e6db74">&#34;&gt;= 1.2.0&#34;</span> <span style="color:#75715e">#required version of TF</span>
+</span></span><span style="display:flex;"><span>}
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e">#This is the provider block. This is where provider and its regions and</span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e">#other provisioning information is written</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>provider <span style="color:#e6db74">&#34;aws&#34;</span> {
+</span></span><span style="display:flex;"><span>  region = <span style="color:#e6db74">&#34;us-east-2&#34;</span>
+</span></span><span style="display:flex;"><span>}
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e">#Resource block is where we configure the infrastructure to be deployed</span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e">#When you change region, even ami below has to be changed</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>resource <span style="color:#e6db74">&#34;aws_instance&#34;</span> <span style="color:#e6db74">&#34;lesson_03&#34;</span> {
+</span></span><span style="display:flex;"><span>  ami           = <span style="color:#e6db74">&#34;ami-0c7c4e3c6b4941f0f&#34;</span>
+</span></span><span style="display:flex;"><span>  instance_type = <span style="color:#e6db74">&#34;t3.micro&#34;</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>  tags = {
+</span></span><span style="display:flex;"><span>    Name = <span style="color:#e6db74">&#34;Lesson-03-AWS-Instance&#34;</span>
+</span></span><span style="display:flex;"><span>  }
+</span></span><span style="display:flex;"><span>}</span></span></code></pre></div><h2 id="terraform-workflow">Terraform Workflow<a class="anchor" href="#terraform-workflow">#</a></h2>
+<table>
+	<thead>
+			<tr>
+					<th>Write</th>
+					<th>Code your TF configs in its own working directory. Then initialize that directory.</th>
+			</tr>
+	</thead>
+	<tbody>
+			<tr>
+					<td>Plan</td>
+					<td>Verify the config is valid and review the TF plan.</td>
+			</tr>
+			<tr>
+					<td>Apply</td>
+					<td>Build the infrastructure based on the TF config.</td>
+			</tr>
+			<tr>
+					<td>Use terraform commands</td>
+					<td><em>init, fmt, validate, plan,</em> <em><strong>apply</strong>__,</em> <em><strong>destroy</strong></em></td>
+			</tr>
+			<tr>
+					<td></td>
+					<td>*<strong>*terraform apply</strong> will make chnages to infra and to the state of the file; cannot go back</td>
+			</tr>
+	</tbody>
+</table>
+
+</article>
+ 
+      
+
+      <footer class="book-footer">
+        
+  <div class="flex flex-wrap justify-between">
+
+<div>
+
+</div>
+
+<div>
+
+</div>
+
+</div>
+
+<div class="flex flex-wrap justify-between">
+    <span>
+    
+      <a href="/posts/automation/bash-scripting/" class="flex align-center">
+        <img src="/icons/backward.svg" class="book-icon" alt="Backward" />
+        <span>BASH Scripting</span>
+      </a>
+    
+    </span>
+    <span>
+    
+      <a href="/posts/purple-team/vulnerabilities/" class="flex align-center">
+        <span>Vulnerabilities</span>
+        <img src="/icons/forward.svg" class="book-icon" alt="Forward" />
+      </a>
+    
+    </span>
+  </div>
+
+ 
+        
+  
+  <div class="book-comments">
+
+</div>
+  
+ 
+        
+        
+  
+ 
+        
+  
+    <script>(function(){document.querySelectorAll("pre:has(code)").forEach(e=>{e.addEventListener("click",e.focus),e.addEventListener("copy",function(t){if(t.preventDefault(),navigator.clipboard){const t=window.getSelection().toString()||e.textContent;navigator.clipboard.writeText(t)}})})})()</script>
+  
+
+      </footer>
+
+      <label for="menu-control" class="hidden book-menu-overlay"></label>
+    </div>
+
+    
+  
+  <aside class="book-toc">
+    <div class="book-toc-content">
+      
+  
+<nav id="TableOfContents">
+  <ul>
+    <li><a href="#why-terraform">Why Terraform?</a></li>
+  </ul>
+
+  <ul>
+    <li>
+      <ul>
+        <li><a href="#installing-terraform">Installing Terraform</a></li>
+      </ul>
+    </li>
+    <li><a href="#how-does-terraform-work">How does Terraform work</a></li>
+    <li><a href="#terraform-workflow">Terraform Workflow</a></li>
+  </ul>
+</nav>
+
+
+
+    </div>
+  </aside>
+  
+ 
+  </main>
+
+  
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

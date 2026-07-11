@@ -2,18 +2,26 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   <url>
-    <loc>http://localhost:1313/posts/automating-tasks-and-system-monitoring-with-linux-scripts/</loc>
+    <loc>http://localhost:1313/posts/automation/automating-tasks-and-system-monitoring-with-linux-scripts/</loc>
   </url><url>
-    <loc>http://localhost:1313/posts/bash-scripting/</loc>
+    <loc>http://localhost:1313/posts/automation/</loc>
+  </url><url>
+    <loc>http://localhost:1313/posts/automation/bash-scripting/</loc>
+  </url><url>
+    <loc>http://localhost:1313/posts/containers-and-virtualization/</loc>
   </url><url>
     <loc>http://localhost:1313/</loc>
   </url><url>
-    <loc>http://localhost:1313/posts/nmap-scan-techniques-walkthrough/</loc>
+    <loc>http://localhost:1313/posts/red-team/nmap-scan-techniques-walkthrough/</loc>
   </url><url>
     <loc>http://localhost:1313/posts/</loc>
   </url><url>
-    <loc>http://localhost:1313/posts/terraform-in-aws/</loc>
+    <loc>http://localhost:1313/posts/purple-team/</loc>
   </url><url>
-    <loc>http://localhost:1313/posts/vulnerabilities/</loc>
+    <loc>http://localhost:1313/posts/red-team/</loc>
+  </url><url>
+    <loc>http://localhost:1313/posts/containers-and-virtualization/terraform-in-aws/</loc>
+  </url><url>
+    <loc>http://localhost:1313/posts/purple-team/vulnerabilities/</loc>
   </url>
 </urlset>

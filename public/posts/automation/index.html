@@ -11,24 +11,24 @@ https://github.com/alex-shpak/hugo-book
 <meta name="description" content="">
 <meta name="theme-color" media="(prefers-color-scheme: light)" content="#ffffff">
 <meta name="theme-color" media="(prefers-color-scheme: dark)" content="#2e3440">
-<meta name="color-scheme" content="light dark"><meta property="og:url" content="http://localhost:1313/posts/">
+<meta name="color-scheme" content="light dark"><meta property="og:url" content="http://localhost:1313/posts/automation/">
 	<meta property="og:site_name" content="jogi-writes">
-	<meta property="og:title" content="Posts">
+	<meta property="og:title" content="Automation">
 	<meta property="og:locale" content="en_us">
 	<meta property="og:type" content="website">
 
 
-	<meta itemprop="name" content="Posts">
+	<meta itemprop="name" content="Automation">
 
-<title>Posts • jogi-writes</title>
+<title>Automation • jogi-writes</title>
 <link rel="icon" href="/favicon.png" >
 <link rel="manifest" href="/manifest.json">
-<link rel="canonical" href="http://localhost:1313/posts/">
+<link rel="canonical" href="http://localhost:1313/posts/automation/">
 <link rel="stylesheet" href="/book.min.b71fe3c1d3675e52d80430d63a71819e12d05dee934e099a700bacfd4c49a7be.css" integrity="sha256-tx/jwdNnXlLYBDDWOnGBnhLQXe6TTgmacAus/UxJp74=" crossorigin="anonymous">
 
 
   <script defer type="module" src="/en.search.min.115fbd8172062702fd4cb7ee3eb1412ee99bd70a7df7252ff768cabe5ad2cff4.js" integrity="sha256-EV&#43;9gXIGJwL9TLfuPrFBLumb1wp99yUv92jKvlrSz/Q=" crossorigin="anonymous"></script>
-<link rel="alternate" type="application/rss+xml" href="http://localhost:1313/posts/index.xml" title="Posts" />
+<link rel="alternate" type="application/rss+xml" href="http://localhost:1313/posts/automation/index.xml" title="Automation" />
 
   
 </head>
@@ -250,7 +250,7 @@ https://github.com/alex-shpak/hugo-book
     <img src="/icons/menu.svg" class="book-icon" alt="Menu" />
   </label>
 
-  <h3>Posts</h3>
+  <h3>Automation</h3>
 
   <label for="toc-control">
     
@@ -295,6 +295,59 @@ https://github.com/alex-shpak/hugo-book
 
       
       
+  
+  <article class="book-post markdown">
+    <h2>
+      <a href="/posts/automation/automating-tasks-and-system-monitoring-with-linux-scripts/">Automating Tasks and System Monitoring with Linux Scripts</a>
+    </h2>
+    <div class="book-post-container flex gap">
+      <div>
+        
+
+
+  
+
+  
+
+
+        <div class="book-post-content markdown-inner"><hr>
+<h1 id="script-1-task-automation">Script 1: Task Automation<a class="anchor" href="#script-1-task-automation">#</a></h1>
+<p>Source Code:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#75715e">#!/bin/bash
+</span></span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>user<span style="color:#f92672">=</span><span style="color:#66d9ef">$(</span>whoami<span style="color:#66d9ef">)</span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e">#Takes the name of the current user for greeting</span>
+</span></span><span style="display:flex;"><span>echo <span style="color:#e6db74">&#34;Hi, </span>$user<span style="color:#e6db74">&#34;</span>
+</span></span><span style="display:flex;"><span>echo <span style="color:#e6db74">&#34;this is a system updater script...&#34;</span>
+</span></span><span style="display:flex;"><span>sleep 0.5
+</span></span><span style="display:flex;"><span>sudo apt-get update
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>echo <span style="color:#e6db74">&#34;checking for updates …</span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></code></pre></div></div>
+      </div></div>
+  </article>
+  
+  <article class="book-post markdown">
+    <h2>
+      <a href="/posts/automation/bash-scripting/">BASH Scripting</a>
+    </h2>
+    <div class="book-post-container flex gap">
+      <div>
+        
+
+
+  
+
+  
+
+
+        <div class="book-post-content markdown-inner"><h3 id="getting-started-with-the-bash-scripting">Getting started with the bash scripting<a class="anchor" href="#getting-started-with-the-bash-scripting">#</a></h3>
+<p>Run the command to know which shell/script is being used.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>~$ which $SHELL
+</span></span><span style="display:flex;"><span>/usr/bin/zsh</span></span></code></pre></div><p>Use the “echo” command to display a message, like</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>~$ echo <span style="color:#e6db74">&#34;Hello World&#34;</span>
+</span></span><span style="display:flex;"><span>Hello World</span></span></code></pre></div><p>Create a file, and name it like …</p></div>
+      </div></div>
+  </article>
   
  
       
