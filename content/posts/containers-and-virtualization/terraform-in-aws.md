@@ -7,7 +7,7 @@ Reference: https://github.com/daveprowse/tac-course
 Status: In progress
 createdAt: '2026-07-08T23:55:00.000Z'
 title: Terraform in AWS
-updatedAt: '2026-07-13T20:49:00.000Z'
+updatedAt: '2026-07-14T23:07:00.000Z'
 ---
 
 
@@ -197,7 +197,11 @@ One of that will be a lock file `.hcl`which is manually generated. This file con
 ## Getting an ami image ID
 
 ```powershell
+#We are pulling a Linux 2023 image
 aws ssm get-parameters --names /aws/service/ami-amazon-linux-latest/al2023-ami-kernel-default-x86_64 --query "Parameters[0].Value" --output text
+
+#TO get the latest Ubuntu image
+aws ssm get-parameters --names /aws/service/canonical/ubuntu/server/24.04/stable/current/amd64/hvm/ebs-gp3/ami-id --query "Parameters[0].Value" --output text
 ```
 
 Use this command on powershell to get an ami image id that you could use with your Terraform infrastructure.
@@ -388,6 +392,11 @@ So in our case, it created network infrastructure and security groups, and then 
 
 You may inspect the state file to validate the security groups present on the AWS Mangement Console.
 
+> 💡 **Why does the SSH connection to the AWS Debian instance fail with 'Permission denied (publickey)'?**  
+> The SSH connection fails with 'Permission denied (publickey)' because AWS requires you to use an SSH key pair for authentication instead of passwords. Even though the security group allows SSH on port 22, you need the correct private key that matches the public key associated with the instance to connect. This is a security measure AWS enforces to ensure secure access to your instances.
+
+    The SSH connection fails with 'Permission denied (publickey)' because AWS requires you to use an SSH key pair for authentication instead of passwords. Even though the security group allows SSH on port 22, you need the correct private key that matches the public key associated with the instance to connect. This is a security measure AWS enforces to ensure secure access to your instances.
+
 Similarly, the destroy command destroys the resources, groups and infrastructure in a reverse order.
 
 ```powershell
@@ -411,3 +420,137 @@ aws_security_group.sg_ssh: Destruction complete after 1s
 
 Destroy complete! Resources: 3 destroyed.
 ```
+
+# AWS Configurations with SSH and Outputs
+
+For this exercise, I created two folders namely, `instance` and `keys`. Since I am using Windows, I will be doing it on PowerShell.
+
+```powershell
+New-Item -Name "instance" -ItemType Directory
+New-Item -Name "keys" -ItemType Directory
+```
+
+Generating key pair to use with AWS SSH.
+
+```powershell
+#To check if you system has SSH, which most definitely will be present
+ssh -V
+
+#Generate a key pair with ED cypher
+ssh-keygen -t ed25519
+
+#To save it in the same folder (not default), we already have a keys folder, so we
+#will add the key pair in that folder.
+
+#When prompted where to save
+keys/aws_key
+
+#Make sure that these keys are not publically available as they could compromise the
+#security of SSH and ultimately AWS. Do not push them on GitHub if you are planning
+#on doing what I am doing
+```
+
+## Building Terraform Files
+
+I know you may think this is getting repetitive, but trust me, this one is not the same! We were writing code in a single file before this. Now we are going to create a couple of files, each independent of one another, yet related to the overall infrastructure.
+
+```powershell
+#Make the following files in the /instances directory
+New-Item -Name "version.tf"
+New-Item -Name "provider.tf"
+New-Item -Name "main.tf"
+New-Item -Name "outputs.tf"
+```
+
+Fill the fiels###########################################
+
+```powershell
+#For version.tf
+terraform {
+  required_providers {
+    aws = {
+      source  = "hashicorp/aws"
+      version = "~> 6.0"
+    }
+  }
+
+  required_version = ">= 1.5.0"
+}
+```
+
+```powershell
+#For provider.tf
+provider "aws" {
+  region = "us-east-1"
+}
+```
+
+For this exercise, we will be using Ubuntu. Go here to get the latest image ID for ubuntu for your region [Getting an ami image ID](https://app.notion.com/p/3970336b2cc2806190dbd4038e3dd6a7#39c0336b2cc28025b6f4fed85ee9756c).
+
+Copy the public key from the /keys/aws-keys.pub and paste in the field `public_key`. It should look something like this:
+
+![image.png](/images/image.png)
+
+Along with https, and SSH, we now have another http security group, and its configuration has been added in the `main.tf` file.
+
+Copy over the code to `outputs.tf` as well!
+
+```powershell
+#Code for outputs.tf
+# watch for an error here!
+
+output "public_dns" {
+  description = "DNS name of the EC2 instance"
+  value       = aws_instance.lesson_05.public_dns
+}
+
+output "public_ip" {
+  description = "Public IP address of the EC2 instance"
+  value       = aws_instance.lesson_05.public_ip
+}
+
+```
+
+Once all the files are saved, go ahead and let do `terraform init`, `terraform fmt`, `terraform validate`, `terraform apply`. Now, if you observer carefully, you shall see that after plan/apply, there is some extra information. That is the `Outputs:` which is done by our [`outputs.tf`](http://outputs.tf/) file to see some specific configurations or assignments or status of any properties of the instance. Some may need to be applied to get a real value instead of `(known after apply)`.
+
+## Connecting via SSH to an Instance
+
+We can use the `public_ip`field we got from the output to use to connect over SSH to the instance. We will also use the private key generated earlier from `/keys/aws_key`. The default username for Ubuntu systems is `ubuntu`.
+
+```powershell
+#Using the IP address assigned to me by AWS
+ssh -i "../keys/aws_key" ubuntu@54.90.112.237
+
+#Or you can use the public_dns address to SSH
+ssh-i "../keys/aws_key" ubuntu@ec2-54-90-112-237.compute-1.amazonaws.com
+
+#Or create a variable which directly takes input from the outputs file
+ssh -i "../keys/aws_key" ubuntu@$(terraform output -raw public_ip)
+
+#Or DNS
+ssh -i "../keys/aws_key" ubuntu@$(terraform output -raw public_dns)
+#We are using the -raw tag to get just the IP address and ignore the inverted commas
+
+#Type yes when/if prompted and enter the passphrase if you had created it while
+#creating the key pair
+
+#To exit from the Ubuntu, press CTRL+D or type exit
+```
+
+While connecting later, you can use `terraform output` command to check your IP address. Using a variable is ideal for making scripts and sharing the code, while the other users of the same command can connect to their respective instances with a dedicated IP/DNS.
+
+## Re-init or Reinitializing the working directory
+
+There may be some cases where we might face errors or issues while applying infrastructure. We can start from square one while retaining the .tf files by using a simple command. To do this is fairly simple!
+
+```powershell
+#Use the rm commands
+rm -r .terraform
+rm terraform.tfstate
+rm terraform.tfstate.backup
+rm .terraform.lock.hcl
+```
+
+> 💡 Never imply what you want to apply! - Dave Prowse
+
+# Terraform with Cloud-Init and Viewing Resources
