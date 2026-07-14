@@ -7,7 +7,7 @@ Reference: https://github.com/daveprowse/tac-course
 Status: In progress
 createdAt: '2026-07-08T23:55:00.000Z'
 title: Terraform in AWS
-updatedAt: '2026-07-13T03:19:00.000Z'
+updatedAt: '2026-07-13T20:49:00.000Z'
 ---
 
 
@@ -184,7 +184,9 @@ By configuring a global `[default]` profile token through `aws configure`, local
 
 ## Initializing the Directory
 
-> 💡 terraform init
+```powershell
+terraform init
+```
 
 Initialize this in the working folder. If its green, terraform has been initalized successfully.
 
@@ -213,6 +215,14 @@ Since Terraform depends only on the functions created by Terraform, it does not 
 
 This inspects the code and ensures that the code itself is valid or not.
 
+## Formatting the Code
+
+```powershell
+terraform fmt
+```
+
+This command automatically standardizes the code with the Terraform conventions. It does not add or remove any characters, except tab spaces and spaces, with the purpose of aligning the code with the right indents.
+
 ## Viewing the Terraform Plan
 
 ```powershell
@@ -220,6 +230,8 @@ terraform plan
 ```
 
 This command shows the infrastructure plan that we are going to be using. It shows all the possible configurations we have provided so far, like `ami`, `instance_type`, `tags`, etc. Most of the fields will be `(known after apply)` because the service provider itself has not been initialized, or told that we want to run these services. They will be assigned once `terraform apply` is triggered.
+
+The terraform plan command scans code, but it does not fix the code.
 
 We can also save the plan as a file to save it for later with the command
 
@@ -290,3 +302,112 @@ Notice the value are going to be changed to null once this operation is confirme
 > This is significant especially in production environments, or labs where data, processes and other operations are critical.
 
     This is significant especially in production environments, or labs where data, processes and other operations are critical.
+
+A last-known good state will automatically be backed up and a new file will be created with the extension `.tfstate.backup`. This file will go away automatically when we run the command `terraform apply` again. In any case our main `.tf` file will not be touched.
+
+# AWS Configuration with Security Groups
+
+We will be adding two more resources that will configure the security groups for the deployed instances. The two security groups will be `aws_security_group` for `ssh` and `https`.
+
+```powershell
+resource "aws_instance" "lesson_04" {
+  ami           = "ami-0c7c4e3c6b4941f0f"
+  instance_type = "t3.micro"
+  vpc_security_group_ids = [
+    aws_security_group.sg_ssh.id,
+    aws_security_group.sg_https.id
+  ]
+
+  tags = {
+    Name      = "Lesson-04-VM-SG"
+  }
+}
+
+resource "aws_security_group" "sg_ssh" {
+  ingress {
+    cidr_blocks = ["0.0.0.0/0"]
+    protocol    = "tcp"
+    from_port   = 22
+    to_port     = 22
+  }
+
+  egress {
+    cidr_blocks = ["0.0.0.0/0"]
+    protocol    = "-1"
+    from_port   = 0
+    to_port     = 0
+  }
+}
+
+resource "aws_security_group" "sg_https" {
+  ingress {
+    cidr_blocks = ["192.168.0.0/16"]
+    protocol    = "tcp"
+    from_port   = 443
+    to_port     = 443
+  }
+
+  egress {
+    cidr_blocks = ["0.0.0.0/0"]
+    protocol    = "-1"
+    from_port   = 0
+    to_port     = 0
+  }
+}
+```
+
+The `ingress` and `egress`fields decide what connections are to be allowed inbound and outbound respectively.
+
+## Exploring the Terraform Registry
+
+> 💡 [https://registry.terraform.io/providers/hashicorp/aws/latest/docs](https://registry.terraform.io/providers/hashicorp/aws/latest/docs)
+
+Use this resource to learn about all the resources of not just AWS, but other providers. You can explore this registry to know more about how to use a particular resource and its code template.
+
+## Validating and Creating Infrastructure
+
+```powershell
+#command entered:
+terraform apply
+
+#Output in terminal after running the command:
+aws_security_group.sg_https: Creating...
+aws_security_group.sg_ssh: Creating...
+aws_security_group.sg_ssh: Creation complete after 4s [id=sg-090d75c7db447e08b]
+aws_security_group.sg_https: Creation complete after 4s [id=sg-038e99a8b4d590599]
+aws_instance.lesson_04: Creating...
+aws_instance.lesson_04: Still creating... [00m10s elapsed]
+aws_instance.lesson_04: Creation complete after 13s [id=i-0034798dcc99f27d0]
+
+Apply complete! Resources: 3 added, 0 changed, 0 destroyed.
+```
+
+Terraform does not run the code in the order it is written. It runs the code in order with what it thinks should be done first.
+
+So in our case, it created network infrastructure and security groups, and then building instances that use this infrastructure and security groups.
+
+You may inspect the state file to validate the security groups present on the AWS Mangement Console.
+
+Similarly, the destroy command destroys the resources, groups and infrastructure in a reverse order.
+
+```powershell
+#command entered:
+terraform destroy
+
+yes
+
+#Output
+aws_instance.lesson_04: Destroying... [id=i-0034798dcc99f27d0]
+aws_instance.lesson_04: Still destroying... [id=i-0034798dcc99f27d0, 00m10s elapsed]
+aws_instance.lesson_04: Still destroying... [id=i-0034798dcc99f27d0, 00m20s elapsed]
+aws_instance.lesson_04: Still destroying... [id=i-0034798dcc99f27d0, 00m30s elapsed]
+aws_instance.lesson_04: Still destroying... [id=i-0034798dcc99f27d0, 00m40s elapsed]
+aws_instance.lesson_04: Still destroying... [id=i-0034798dcc99f27d0, 00m50s elapsed]
+aws_instance.lesson_04: Destruction complete after 51s
+aws_security_group.sg_https: Destroying... [id=sg-038e99a8b4d590599]
+aws_security_group.sg_ssh: Destroying... [id=sg-090d75c7db447e08b]
+aws_security_group.sg_https: Destruction complete after 0s
+aws_security_group.sg_ssh: Destruction complete after 1s
+
+Destroy complete! Resources: 3 destroyed.
+```
