@@ -3,10 +3,10 @@ Category:
 - Automation
 Credits: ''
 Reference: ''
-Status: Done
+Status: Published
 createdAt: '2026-07-08T18:33:00.000Z'
 title: Automating Tasks and System Monitoring with Linux Scripts
-updatedAt: '2026-07-09T16:23:00.000Z'
+updatedAt: '2026-07-15T15:57:00.000Z'
 ---
 
 
@@ -36,12 +36,6 @@ echo "updates installed successfully"
 Problem Solved: Automates updates to the system to save time.
 
 Rationale: Manually entering the commands is time taking. This script helps with that. Prospectively, this could be executed right after the user is logged in to the system.
-
-Screenshots:
-
-![image.png](/images/image.png)
-
-![image.png](/images/image.png)
 
 ---
 
@@ -76,10 +70,6 @@ ifconfig | grep "RX packets" -A 1
 Problem solved: Gives a quick overview of the system status and performance
 
 Rationale: Easy monitoring and troubleshooting the system in case of any lags or crashes that may occur while testing or deploying an application.
-
-Screenshot:
-
-![image.png](/images/image.png)
 
 ---
 
@@ -117,10 +107,6 @@ sudo systemctl status nginx
 Problem solved: This script simplifies the installation of the nginx server
 
 Rationale: This script can be used to quickly install nginx in any ubuntu system (batch installations) or any application/server as a matter of fact can be installed by modifying this script.
-
-Screenshot:
-
-![image.png](/images/image.png)
 
 ---
 
