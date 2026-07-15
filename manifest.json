@@ -1,0 +1,15 @@
+{
+  "name": "jogi-writes",
+  "short_name": "jogi-writes",
+  "start_url": "/jogi-writes/",
+  "scope": "/jogi-writes/",
+  "display": "standalone",
+  "background_color": "#000000",
+  "theme_color": "#000000",
+  "icons": [
+    {
+      "src": "/jogi-writes/favicon.svg",
+      "sizes": "512x512"
+    }
+  ]
+}
