@@ -1,4 +1,4 @@
-baseURL = 'https://example.org/'
+baseURL = 'https://karuneshb.github.io/jogi-writes/'
 defaultContentLanguage = 'en'
 title = 'jogi-writes'
 theme = 'hugo-book'

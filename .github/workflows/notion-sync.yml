@@ -1,4 +1,4 @@
-name: Sync Notion to GitHub
+name: Sync Notion and Deploy to GitHub Pages
 
 on:
   workflow_dispatch:
@@ -9,11 +9,14 @@ permissions:
   contents: write
 
 jobs:
-  sync:
+  sync-and-deploy:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4
+        with:
+          submodules: true  # Pulls your Hugo theme submodule files cleanly
+          fetch-depth: 0
 
       - name: Convert Notion Database to Markdown
         uses: ega4432/notion-to-markdown-action@v0
@@ -96,10 +99,24 @@ jobs:
                               os.remove(filepath)
           EOF
 
-      - name: Commit and Push to Repository
+      - name: Save Sorted Notion Content Back to Git
         run: |
           git config --global user.name "GitHub Actions Bot"
           git config --global user.email "actions@github.com"
-          git rm --cached sort_posts.py || true
-          git add .
+          git add content/ static/
           git diff-index --quiet HEAD || (git commit -m "Automated sync from Notion with nested categories" && git push)
+
+      - name: Setup Hugo
+        uses: peaceiris/actions-hugo@v3
+        with:
+          hugo-version: 'latest'
+          extended: true
+
+      - name: Build Static HTML Sites
+        run: hugo --minify
+
+      - name: Deploy Live to GitHub Pages
+        uses: peaceiris/actions-deploy-gh-pages@v4
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_dir: ./public
