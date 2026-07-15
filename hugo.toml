@@ -40,3 +40,7 @@ ignoreLogs = ['warning-goldmark-raw-html']
   name = "📄 Master's Portfolio"
   url = "https://github.com/your-username/academic-projects"
   weight = 30
+[markup]
+  [markup.tableOfContents]
+    endLevel = 4
+    startLevel = 1
