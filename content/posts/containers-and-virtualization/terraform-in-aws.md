@@ -7,7 +7,7 @@ Reference: https://github.com/daveprowse/tac-course
 Status: In progress
 createdAt: '2026-07-08T23:55:00.000Z'
 title: Terraform in AWS
-updatedAt: '2026-07-14T23:07:00.000Z'
+updatedAt: '2026-07-15T22:19:00.000Z'
 ---
 
 
@@ -251,6 +251,8 @@ We can also save the plan as a file to save it for later with the command
 Inspecting the .tfstate file gives a .json file. All the keys and values written here are exchanged when an instance was created on AWS and Terraform communicated with the AWS API.
 
 Any change made to any instance deployed using Terraform will be updated and shown in the .tfstate file.
+
+To view the .tfstate file in the terminal use the command `terraform show`. This gives the output in a human-readable format. However, the .tfstate file is in JSON so it is machine-readable.
 
 ## Destroying the Infrastructure
 
@@ -554,3 +556,78 @@ rm .terraform.lock.hcl
 > 💡 Never imply what you want to apply! - Dave Prowse
 
 # Terraform with Cloud-Init and Viewing Resources
+
+## Preparing the Lab
+
+1. Make a new folder inside the main directory `/scripts`.
+2. Copy the code-script from the repo to the scripts folder and change it to `apache-mkdocs.yaml`.
+
+```powershell
+#You may use the following command to complete the 2nd step.
+cp code-script.txt /scripts/apache-mkdocs.yaml
+
+#Same command for PowerShell but may need to use autocomplete
+```
+
+1. Create a new SSH key pair, and save it to the directory `/keys`
+2. Add the public key to the respective fields in `main.tf`and `apache-mkdocs.yaml`.
+
+## Analyzing the Cloud-Init Scripts
+
+Go though the `apache-mkdocs.yaml` and learn about the purpose of this file. That should be pretty self-explanatory.
+
+Do the typical Terraform routine
+
+`fmt --> init --> validate --> plan --> apply`
+
+SSH into the Ubuntu machine with the given IP. Remember that the user we created for this instance was `spiderman` so while doing SSH use the command
+
+`ssh -i "..\keys\aws_key" spiderman@<IP address from the output>`
+
+## Viewing Resources with Terraform Commands
+
+| terraform state list | Displays a brief list of resources.               |
+| -------------------- | ------------------------------------------------- |
+| terraform show       | Shows a full list of human-readable resources.    |
+| terraform state show | Displays the specifics of an individual resource. |
+
+`terraform state list`: This command lists the resources are they are known by our state file. As of the current deployment, we can see the following:
+
+```powershell
+~$ terraform state list
+
+#Lists the following
+aws_instance.lesson_06
+aws_key_pair.deployer
+aws_security_group.sg_http
+aws_security_group.sg_https
+aws_security_group.sg_ssh
+```
+
+To view one particular resource in detail, use `terraform state show <resource name>`
+
+Example:
+
+```powershell
+PS C:\fakepath\lesson-06\instances> terraform state show aws_key_pair.deployer
+# aws_key_pair.deployer:
+resource "aws_key_pair" "deployer" {
+    arn             = "arn:aws:ec2:us-east-2:397393880874:key-pair/aws_key"
+    fingerprint     = "1/sFkuObfdA3W0FBHSawdfo7OTN1dUN8apgig1O4JPM="
+    id              = "aws_key"
+    key_name        = "aws_key"
+    key_name_prefix = null
+    key_pair_id     = "key-096ec464a07f9ecee"
+    key_type        = "ed25519"
+    public_key      = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAINS3J44Y8q6wQH6UN76+snnLXH8czxGBt9KG26xCS2XJ karu2@KB-ROG-18JVLR"
+    tags_all        = {}
+}
+```
+
+## Replacing Individual Resources
+
+```powershell
+terraform apply -replace="aws_instance.lesson_06"
+```
+
+This will only work if we have replaced any instance or its resources in the .tfstate first. You may inspect the plan again to see the changes that would occur after we apply the new plan.
