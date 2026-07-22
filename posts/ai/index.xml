@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Ai on jogi-writes</title><link>https://karuneshb.github.io/jogi-writes/posts/ai/</link><description>Recent content in Ai on jogi-writes</description><generator>Hugo</generator><language>en-us</language><atom:link href="https://karuneshb.github.io/jogi-writes/posts/ai/index.xml" rel="self" type="application/rss+xml"/><item><title>Certified LLM Security Expert (CLLMSE) - Study Notes</title><link>https://karuneshb.github.io/jogi-writes/posts/ai/certified-llm-security-expert-cllmse---study-notes/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://karuneshb.github.io/jogi-writes/posts/ai/certified-llm-security-expert-cllmse---study-notes/</guid><description>&lt;h1 id="domain-01-llm-attacks--adversarial-techniques"&gt;Domain 01: LLM Attacks &amp;amp; Adversarial Techniques&lt;a class="anchor" href="#domain-01-llm-attacks--adversarial-techniques"&gt;#&lt;/a&gt;&lt;/h1&gt;
+&lt;p&gt;The main thing that’s the root cause behind most of this domain is followed is that the model cannot accurately tell the difference between an instruction it should obey and data it was just asked to process. Some examples given in the PDF are:&lt;/p&gt;
+&lt;table&gt;
+	&lt;thead&gt;
+			&lt;tr&gt;
+					&lt;th&gt;Attack Surface&lt;/th&gt;
+					&lt;th&gt;Who controls it&lt;/th&gt;
+					&lt;th&gt;Example&lt;/th&gt;
+			&lt;/tr&gt;
+	&lt;/thead&gt;
+	&lt;tbody&gt;
+	&lt;/tbody&gt;
+&lt;/table&gt;
+&lt;p&gt;| Direct (Chat Input)
+Prompting | The end user, typing into the interface | “Ignore your instructions and …” |
+| Indirect (ingested content) | Anyone who can plant content the agent later reads | A malicious file or web page |
+| Training-time | Anyone with write access to training/fine-tuning data | A backdoor trigger phrase baked into the model |
+| Supply Chain | A third-party model, plugin or dependency maintainer | A rug-pulled MCP tool manifest |&lt;/p&gt;</description></item></channel></rss>

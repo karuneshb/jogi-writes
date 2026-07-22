@@ -21,7 +21,24 @@
 &lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;/usr/bin/zsh&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;Use the “echo” command to display a message, like&lt;/p&gt;
 &lt;div class="highlight"&gt;&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"&gt;&lt;code class="language-bash" data-lang="bash"&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;~$ echo &lt;span style="color:#e6db74"&gt;&amp;#34;Hello World&amp;#34;&lt;/span&gt;
 &lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;Hello World&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;Create a file, and name it like name.sh. After a file is created, it will be automatically opened. If not then type &lt;em&gt;nano name.sh&lt;/em&gt;&lt;/p&gt;
-&lt;p&gt;Start typing the script in the text editor. After you are done, type &lt;em&gt;Ctrl+X&lt;/em&gt;, &lt;em&gt;y/Y&lt;/em&gt; then hit Enter.&lt;/p&gt;</description></item><item><title>Nmap Scan techniques walkthrough</title><link>https://karuneshb.github.io/jogi-writes/posts/red-team/nmap-scan-techniques-walkthrough/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://karuneshb.github.io/jogi-writes/posts/red-team/nmap-scan-techniques-walkthrough/</guid><description>&lt;p&gt;Sample template to start the writes. Check pipeline.&lt;/p&gt;
+&lt;p&gt;Start typing the script in the text editor. After you are done, type &lt;em&gt;Ctrl+X&lt;/em&gt;, &lt;em&gt;y/Y&lt;/em&gt; then hit Enter.&lt;/p&gt;</description></item><item><title>Certified LLM Security Expert (CLLMSE) - Study Notes</title><link>https://karuneshb.github.io/jogi-writes/posts/ai/certified-llm-security-expert-cllmse---study-notes/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://karuneshb.github.io/jogi-writes/posts/ai/certified-llm-security-expert-cllmse---study-notes/</guid><description>&lt;h1 id="domain-01-llm-attacks--adversarial-techniques"&gt;Domain 01: LLM Attacks &amp;amp; Adversarial Techniques&lt;a class="anchor" href="#domain-01-llm-attacks--adversarial-techniques"&gt;#&lt;/a&gt;&lt;/h1&gt;
+&lt;p&gt;The main thing that’s the root cause behind most of this domain is followed is that the model cannot accurately tell the difference between an instruction it should obey and data it was just asked to process. Some examples given in the PDF are:&lt;/p&gt;
+&lt;table&gt;
+	&lt;thead&gt;
+			&lt;tr&gt;
+					&lt;th&gt;Attack Surface&lt;/th&gt;
+					&lt;th&gt;Who controls it&lt;/th&gt;
+					&lt;th&gt;Example&lt;/th&gt;
+			&lt;/tr&gt;
+	&lt;/thead&gt;
+	&lt;tbody&gt;
+	&lt;/tbody&gt;
+&lt;/table&gt;
+&lt;p&gt;| Direct (Chat Input)
+Prompting | The end user, typing into the interface | “Ignore your instructions and …” |
+| Indirect (ingested content) | Anyone who can plant content the agent later reads | A malicious file or web page |
+| Training-time | Anyone with write access to training/fine-tuning data | A backdoor trigger phrase baked into the model |
+| Supply Chain | A third-party model, plugin or dependency maintainer | A rug-pulled MCP tool manifest |&lt;/p&gt;</description></item><item><title>Nmap Scan techniques walkthrough</title><link>https://karuneshb.github.io/jogi-writes/posts/red-team/nmap-scan-techniques-walkthrough/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://karuneshb.github.io/jogi-writes/posts/red-team/nmap-scan-techniques-walkthrough/</guid><description>&lt;p&gt;Sample template to start the writes. Check pipeline.&lt;/p&gt;
 &lt;p&gt;Sample code to configure the yml for notion to github sync&lt;/p&gt;
 &lt;div class="highlight"&gt;&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"&gt;&lt;code class="language-javascript" data-lang="javascript"&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;&lt;span style="color:#a6e22e"&gt;name&lt;/span&gt;&lt;span style="color:#f92672"&gt;:&lt;/span&gt; &lt;span style="color:#a6e22e"&gt;Sync&lt;/span&gt; &lt;span style="color:#a6e22e"&gt;Notion&lt;/span&gt; &lt;span style="color:#a6e22e"&gt;to&lt;/span&gt; &lt;span style="color:#a6e22e"&gt;GitHub&lt;/span&gt;
 &lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;
